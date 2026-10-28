@@ -1,0 +1,22 @@
+name: Google Calendar Sync
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Synchronize Google Calendars
+        env:
+          SYNC_URL: ${{ secrets.KH_CALENDAR_SYNC_URL }}
+          CRON_SECRET: ${{ secrets.KH_CALENDAR_CRON_SECRET }}
+        run: |
+          curl --fail-with-body --show-error --silent \
+            --request POST \
+            --header "Content-Type: application/json" \
+            --header "x-cron-secret: ${CRON_SECRET}" \
+            "${SYNC_URL}"
