@@ -1,0 +1,2960 @@
+{
+  "version": 2,
+  "exportedAt": "2026-10-29T18:25:48.222Z",
+  "data": {
+    "notes": [
+      {
+        "id": "00485f2b-8023-4bae-9e0a-6b011d0daafd",
+        "title": "Python",
+        "content": "https://notes.desy.de/vjqWWPjIRS2tpXJFbjDYyQ?view\nhttps://hifis.net/workshop-materials/python-first-steps/episodes/00-introduction.html",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 739.04541015625,
+          "y": 430.2220764160156
+        },
+        "connections": [
+          "e3b736f1-823c-40c1-9604-f3f14df6a8db"
+        ],
+        "created": "2026-10-21T08:56:24.430703+00:00"
+      },
+      {
+        "id": "85498d87-f386-4e6b-b570-cca474d2bc6e",
+        "title": "Nationale Plattform für Forschungssicherheit",
+        "content": "Die Plattform soll Forschungskooperationen weder genehmigen noch untersagen können. Stattdessen soll sie die Forschung bei der Risikoanalyse und -bewertung unterstützen und in einer Servicestelle freiwillig beraten. Im Lenkungsgremium der Plattform sollen Vertreter aus Bund, Ländern, der Allianz der Wissenschaftsorganisationen sowie Sicherheitsbehörden sitzen. Die Servicestelle soll vom Wissenschaftsrat umgesetzt und räumlich beim Bundesforschungsministerium angesiedelt sein. Voll funktionsfähig soll die Plattform im ersten Quartal 2027 sein.",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 537.009521484375,
+          "y": 220.3677215576172
+        },
+        "connections": [],
+        "created": "2026-10-22T06:14:27.80801+00:00"
+      },
+      {
+        "id": "e3b736f1-823c-40c1-9604-f3f14df6a8db",
+        "title": "Shell & Github",
+        "content": "ChatGPT Planung/Kursnutzen bewerten\n\nJa. Ich kann dir die Inhalte von „Kickstart Shell & Git“ vollständig und praxisorientiert vermitteln, sodass du den Kurs nicht unbedingt besuchen musst und stattdessen den XAI-Kurs priorisieren kannst.\n\nIch würde dafür einen kleinen, interaktiven Lernkurs aufbauen, der sich an den Inhalten von The Carpentries orientiert. Wir arbeiten direkt auf deinem Mac und nutzen deine eigenen Python- und App-Projekte als Beispiele.\n\nDein Lernkurs: Shell & Git\n\nUmfang: 8 Lerneinheiten à 15–25 Minuten\nGesamtaufwand: ca. 3–4 Stunden zuzüglich optionaler Übungen\nVorkenntnisse: Keine\nArbeitsumgebung: Terminal auf deinem Mac, später GitHub\n\nTeil 1: Unix Shell & Bash\n\nEinheit\tThema\tWas du anschließend kannst\n1\tTerminal und Shell verstehen\tTerminal öffnen, Befehle ausführen, Verzeichnisse anzeigen\n2\tDateien und Ordner verwalten\tMit cd, ls, mkdir, cp, mv und rm arbeiten\n3\tDateien untersuchen\tMit cat, head, tail, grep und wc Daten analysieren\n4\tAutomatisierung mit Bash\tSchleifen, Variablen und eigene Skripte schreiben\n\nPraxisprojekt: Wir erstellen ein Bash-Skript, das automatisch mehrere CSV-Dateien mit geowissenschaftlichen Messdaten verarbeitet.\n\nTeil 2: Git & GitHub\n\nEinheit\tThema\tWas du anschließend kannst\n5\tGit verstehen und einrichten\tGit installieren, Repository erstellen\n6\tÄnderungen versionieren\tgit add, git commit, git status und git log verwenden\n7\tBranches und Versionskontrolle\tNeue Funktionen entwickeln und Änderungen zusammenführen\n8\tGitHub und Zusammenarbeit\tProjekte synchronisieren, push, pull und clone verwenden\n\nPraxisprojekt: Wir legen ein kleines Python-Projekt an, versionieren es mit Git und veröffentlichen es in einem privaten GitHub-Repository.\n\n⸻\n\nSo würde unser Unterricht funktionieren\n\nIch würde dir nicht einfach längere Erklärungen geben, sondern jede Einheit nach demselben Prinzip gestalten:\n\n1. 5 Minuten Theorie: Was macht der Befehl und wofür brauche ich ihn?\n2. 10 Minuten Praxis: Du führst die Befehle selbst auf deinem Mac aus.\n3. 5 Minuten Übung: Du löst eine kleine Aufgabe ohne vorgegebene Lösung.\n4. Feedback: Du schickst mir deine Ergebnisse oder Fehlermeldungen. Ich erkläre sie und wir korrigieren sie gemeinsam.\n\nDabei steigern wir den Schwierigkeitsgrad schrittweise.\n\nBesonders wichtig: Wir behandeln auch typische Fehler und lernen, wie du diese selbstständig diagnostizieren kannst.\n\n⸻\n\nEinheit 1: Das Terminal kennenlernen\n\nWir können direkt anfangen.\n\n1. Was ist die Shell?\n\nNormalerweise bedienst du deinen Mac über eine grafische Benutzeroberfläche: Du öffnest Ordner, verschiebst Dateien und startest Programme mit der Maus.\n\nMit einer Shell kannst du dieselben Aufgaben über Textbefehle erledigen.\n\nAuf deinem Mac gibt es dafür die Anwendung Terminal.\n\nEine wichtige Unterscheidung:\n\n* Terminal: Das Programm, in das du Befehle eingibst.\n* Shell: Das Programm, das deine Befehle interpretiert und ausführt.\n* Bash: Eine verbreitete Shell, die auch für Skripte verwendet wird.\n* Zsh: Die Standardshell aktueller macOS-Versionen.\n\nDie meisten grundlegenden Befehle funktionieren sowohl in Bash als auch in Zsh.\n\n2. Öffne das Terminal\n\nDrücke auf deinem Mac:\n\nCmd + Leertaste\n\nGib Terminal ein und öffne die Anwendung.\n\nDu siehst eine Eingabeaufforderung, beispielsweise:\n\nmirjam@MacBook ~ %\n\n3. Dein erster Befehl\n\nGib Folgendes ein:\n\npwd\n\nDrücke Enter.\n\npwd steht für Print Working Directory.\n\nDer Befehl zeigt dir, in welchem Verzeichnis du dich gerade befindest.\n\nBeispiel:\n\n/Users/mirjam\n\n4. Zeige den Inhalt des Verzeichnisses an\n\nGib ein:\n\nls\n\nls steht für List.\n\nDu siehst die Dateien und Ordner deines aktuellen Verzeichnisses.\n\nProbiere anschließend:\n\nls -l\n\nDas zeigt dir zusätzliche Informationen, beispielsweise Dateigrößen und Änderungszeitpunkte.\n\nUnd schließlich:\n\nls -a\n\nDamit werden auch versteckte Dateien angezeigt.\n\n5. Erstelle deinen ersten Übungsordner\n\nGib nacheinander ein:\n\nmkdir shell_git_kurs\ncd shell_git_kurs\npwd\n\nDu hast jetzt einen neuen Ordner angelegt und bist in diesen gewechselt.\n\nmkdir bedeutet Make Directory, cd bedeutet Change Directory.\n\n⸻\n\nDeine erste Übung\n\nFühre folgende Aufgaben im Terminal aus:\n\nAufgabe A: Erstelle innerhalb von shell_git_kurs einen Ordner namens klimadaten.\n\nAufgabe B: Wechsle in diesen Ordner.\n\nAufgabe C: Finde mit einem einzigen Befehl heraus, in welchem Verzeichnis du dich jetzt befindest.\n\nAufgabe D (Zusatz): Wechsle wieder eine Verzeichnisebene nach oben. Überlege, welcher Befehl dafür geeignet sein könnte.\n\nSchicke mir einfach die Befehle, die du verwendet hast. Ich prüfe sie und erkläre dir gegebenenfalls, was du verbessern kannst.\n\nMein Vorschlag: Wir arbeiten die acht Einheiten gemeinsam durch. Damit kannst du dir die Shell- und Git-Grundlagen unabhängig vom HIFIS-Kurs aneignen und den frei werdenden Termin für Explainable AI nutzen.",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 754.0772705078125,
+          "y": 537.830810546875
+        },
+        "connections": [
+          "00485f2b-8023-4bae-9e0a-6b011d0daafd"
+        ],
+        "created": "2026-10-21T12:31:12.358707+00:00"
+      },
+      {
+        "id": "57196193-fa35-48cd-ae89-d0f31025ab47",
+        "title": "General Assembly 2027",
+        "content": "12.-14. April Bremerhaven,\nHotel angefragt (21.10.2026, Premier Inn)",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 645.099365234375,
+          "y": 86.4002456665039
+        },
+        "connections": [
+          "bdeae375-d696-4142-b257-10a5c12841b6"
+        ],
+        "created": "2026-10-21T14:57:28.843391+00:00"
+      },
+      {
+        "id": "6f7b9d98-2d3e-4b2b-833b-c3eeb2361ca3",
+        "title": "FIS Vorhaben PoF V",
+        "content": "Folie 40 AdV 21.9.2026",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 512.5267944335938,
+          "y": 133.863037109375
+        },
+        "connections": [],
+        "created": "2026-10-21T09:25:12.284476+00:00"
+      },
+      {
+        "id": "93daf383-05be-439d-8849-a39692ceef91",
+        "title": "Transformers",
+        "content": "https://github.com/ducspe/understanding_transformers_workshop\n28.10.2026\n- brain: floating point numbers get accumulated (voltages in biology)\n- weighted inputs\n- GeLu function: nonliniear functions that triggers an output\n- creative functions => nonlinear function, complicated curve + something linear\n- concept of construction\n- use of APIs\n- layers are independent of one another\n- Unterschied Gradient / Gewicht\n- error (Abweichung von berechneter und Trainings-Value)\n- local gradients at each neuron, chain rule\n- g(h(f(x))) calculate the gradient of g which is a function of h (argument) => chain rule\n- PyTorch = library => can calculate gradients very quickly\n- with gradients we can optimize functions => finding one of the minimums that is good enough\n- gradient descend\n- descriminate tasks have a long history\n- generative tasks are new\n- pdf= probability distribution function\n- GANs 2 players => image generator, discriminator\n- diffusion models:, flow-based models\n- transformers train in parallel\n- ChatGPT is only decoder\n- attention = block to understand a word (token) in its context\n- MLP is database/dictionary (e.g. entire reddit) => matrices n*n\n- self-attention vs cross attention, values , queries and keys to tie them together\n- creating key query and value vectors\n- cosine similarity\n- normalization: compute mean, st_d => vulues between 1 and 0, min-max, batch norm, layer norm, the loss function doesnt jitter\n- semantic space, hyperplanes\n- loss function (y-y)2 => regression towards mean\n- transformers are FM generalized training, MLP is workhorse, database\n- downstream tasks => Anpassen auf spezifische Fragen\n- skip connection => resNet (Convolutional networks), gradient becomes 0, skip connection help with that\n- skip MPL, bypass it, embedding comes to MLP => delta embedding => enhanced embedding, enhance the training if the database is too large\n- backpropagation: updates of weights\n- gradients from differnet neurons are multiplied => tend to zero => vanishing gradient\nproduct: layers*embeddings=\n- superneurons\n- positional encoding\n- content encoding and positional encoding are combined\n- one-hot encoding\n- up-projection, down-projection (blowup and squeeze down) idea \n- LM-Studio\n- chain-of thought reasoning\n- lean => verification of things, proof, not intiutive but ligite\n- agentic use tools to search in other databases\n- use cases for transformers: transforms images / pixells into vectors (ViT) => vision transformer, swin transformer\n- building attention is weighted average: matrix multiplication\n- masking and softmax, apply softmax in rows, negative infinity",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 651.8264770507812,
+          "y": 698.2365112304688
+        },
+        "connections": [],
+        "created": "2026-10-28T09:08:54.264051+00:00"
+      },
+      {
+        "id": "bdeae375-d696-4142-b257-10a5c12841b6",
+        "title": "Doctoral Prize Winner, ERC Starting Grant",
+        "content": "AWI: Starting Grant BICLOPS Sören Häfker 2025, ERC Starting Grant PhagoPhoRe: Dr. Nils Rädecker(AWI)\nERC Starting Grant: COLDSPOT: Dr. Carolina Voigt(AWI)\nGFZ: ERC Starting Grant DNE, Ilja Bobrovskiy (bewilligt 2024)\nGEOMAR ERC Starting Grant: OSTIA Ivy Frenger GEOMAR\nPromotionspreis 2026: \nAWI: Track A: Tainã Marcos Lima Pinho (AWI)\nUFZ: Track B: Dr. Pallav Kumar Shrestha\nGEOMAR: Promotionspreis 2024: Track A: Dr. Vanessa Isabel Stenvers, \nFZJ: Track B: Dr. Laura Helleckes,  \nPromotionspreis 2023: KIT Dr. Karina Winkler\nHereon Dr. Nils Christansen",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 656.8287353515625,
+          "y": 179.7346649169922
+        },
+        "connections": [
+          "57196193-fa35-48cd-ae89-d0f31025ab47"
+        ],
+        "created": "2026-10-21T14:55:12.547474+00:00"
+      },
+      {
+        "id": "3202aec7-1944-461a-a16a-28237d1c03ef",
+        "title": "Worning",
+        "content": "Work+Learning",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": null,
+        "connections": [],
+        "created": "2026-10-21T06:21:11.090851+00:00"
+      },
+      {
+        "id": "b2b5e622-077a-4824-adb9-13f6a70a4cae",
+        "title": "Transformer 2",
+        "content": "29.10.2026\nPyTorch\n- API to Python \n- Torch Lighning\n- Keras \n- batches of sentences in every batch instead of single sentences\n- context (length)\n- token= one letter\n- sentences are decoupled in the batch \n- epoch= number of iterations\n- validation loss decreases and increases after a certain number of epochs, jitters\n- train loss decreases\n- learning rate: 10^-3, when approaching minimum decrease the value\n- device: cuda or cpu\n- embedding tables: 2, x and y, y is x shifted by 1\n- dictionary to print things out\n- n_emb: 32\n- number of layers: 4\n - dropout= generalization technique, model stops at minimum\n- prefer bigger models that are simpler, simple enough, regularization\n- random forest\n- ASCII: 8 bits, 2^8= 256 characters, case-sensitive, punctuation marks, space\n- quantize the models, decrease the bits \n- batch normalization: in a vertical direction, compute the local and global mean\n- not learning by hard\n- normalization aims to not give one weight too much influence\n- 4 attention heads: array of 4 heads, kernels from different perspectives, like CNN\n- syntactic sugar\nhttps://github.com/microsoft/nni\n",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": null,
+        "connections": [],
+        "created": "2026-10-29T09:44:43.008194+00:00"
+      },
+      {
+        "id": "1b2836cc-0a2f-4aae-ac03-d75f5bd1bd90",
+        "title": "Ankerpersonen",
+        "content": "Ge-earmarktes Personal \nDas Controlling der SynCom-Aktivitäten erfolgt(e) in FTE, nicht in Kosten \n2021 oder 2022:  St Schwarze: bei der Abstimmung unter den adm. Vorständen der \"Kernzentren + Hereon\" zur HI-CAM-Weiterfinanzierung ist deutlich geworden, dass die 0,2 Prozentpunkte des Innovationspools, die eigentlich für \"sonstige SynCom-Aktivitäten\" reserviert sein sollten, tatsächlich für die Finanzierung der Ankerpersonen verwendet werden. Damit gibt es lediglich für die Personal- und Mietkosten des SynCom-Büros ein eigenes Budget. Ohne dezidiertes SynCom-Budget bleibt nur noch \"Earmarking\" wie bei CTA und CARF. Daher möchte ich anregen, dass wir SynCom und die Finanzierung der SynCom-Aktivitäten auf die TO des Treffens setzen.\n\nStand: 09-2024: https://syncandshare.desy.de/index.php/s/7w8GEiiPJQpixrF?dir=/&editing=false&openfile=true\n\n2021 oder 2022: Budget SynCom (20.000 Sachmittel Rest und 60.000 Personalmittel Rest 2022 in 2023 nutzen) über Innopool reden 0,3 PP für SynCom (0,1 für Koordinierungsbüro, 0,2 PP für Ankerpersonen, die de facto auch andere Aufgaben erfüllen. Switchen?) ",
+        "category": "",
+        "tags": "",
+        "labels": "",
+        "nodePos": {
+          "x": 387.39886474609375,
+          "y": 296.9697570800781
+        },
+        "connections": [],
+        "created": "2026-10-23T07:09:57.867101+00:00"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "44fb6665-66e0-4d15-8e4c-1180b87240fd",
+        "title": "Lars schreiben",
+        "category": "FB EuU",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Miete Forum-Büro, ist veränderlich, aktuell 2% Steigerung vorgesehen. Stimmen die Zahlen so?",
+        "subtasks_done": {}
+      },
+      {
+        "id": "1a3843bc-5d1e-4e54-b10a-2f4f68615a7c",
+        "title": "Berlin-Bild ausmalen",
+        "category": "privat",
+        "due": "2026-10-31",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "a74aef34-ec61-4b9e-a238-710292bc4ad0",
+        "title": "Zahnspange drehen",
+        "category": "privat",
+        "due": "2026-11-01",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "5bc689d6-e3c5-46d7-a13f-02590d47477e",
+        "title": "Elisabeth Gerndt OK abholen",
+        "category": "FB EuU",
+        "due": "2026-10-28",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "wichtig, nachverfolgen",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "0cd6477f-0990-4af7-9c95-987d5b018528",
+        "title": "Arbeitszeugnis Susanne",
+        "category": "FB EuU Admin",
+        "due": "2026-11-02",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "bei Alex oder Frederique nachhaken",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "8d294745-5f78-4126-9124-572854bc2aba",
+        "title": "Kalender, Dussmann",
+        "category": "privat",
+        "due": "2026-11-11",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "2263cbb3-e571-4672-82ac-b2cf6ef017a4",
+        "title": "CB",
+        "category": "FB EuU Kommunikation",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "FB abschaffen, alles auf Missionen ausrichten\nWascal/Sascal-Besuch\nVorstellung UrbENO im \"SAB\"\nPromotionspreis wie geht es weiter",
+        "subtasks_done": {}
+      },
+      {
+        "id": "56ad5647-6f02-4435-ba6c-2037fe1f6c78",
+        "title": "Palermo",
+        "category": "privat",
+        "due": "2026-10-29",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "db3364bb-3119-4e8d-8a82-bb13e6b200c0",
+        "title": "Etiketten",
+        "category": "FB EuU Admin",
+        "due": "2026-10-28",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "f3705629-5456-482d-a438-a33bad4ec7d7",
+        "title": "Andreas M anrufen",
+        "category": "FB EuU",
+        "due": "2026-10-29",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-29T18:15:11.852+00:00",
+        "notes": "",
+        "labels": "wichtig, Gespräche / Kommunikation",
+        "subtasks": "Feedback KBG aus Senat? Senatsempfehlungen für EuU verabschiedet?\nVorbereitung JF KBG",
+        "subtasks_done": {}
+      },
+      {
+        "id": "3a446ffe-fa67-48e5-ad7e-21589f3befb0",
+        "title": "Weihnachtsurlaub beantragen",
+        "category": "FB EuU Admin",
+        "due": "2026-11-03",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "24.12. bis 6.1. => 6 Tage (wenn Heiligabend und Silvester ganz geschenkt sind)",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "bb8c5142-ce24-4a40-ad6e-f5e8cb8afede",
+        "title": "Festplatte LaCie leer machen",
+        "category": "FB EuU Admin",
+        "due": "2026-10-28",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "e5df1a05-3359-4d5e-b33c-414d4ced9896",
+        "title": "Festen Termin vorbereiten ",
+        "category": "",
+        "due": "2026-11-26",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "nächste Woche das erste Mal nach der Pause",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "36824742-ce73-437b-950e-e065c0f3b260",
+        "title": "Martina",
+        "category": "FB EuU",
+        "due": "2026-10-27",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "Termin",
+        "subtasks": "Rom-Urlaub\nVorbereitung Forum-Finanzierung => was kann ich tun, wenn ich keine Antworten auf meine An- und Nachfragen bekomme?\nBridge vorstellen im MB? Zuerst wäre UrbENO dran\nMeret verlängern \nArbeitszeugnis Susanne\nWechsel von chatgpt zu claude\nTermin Weihnachtsfeier\nRechnungen ⇒ Jahresübersicht an Kosten, die auf den FB zukommen\ngemeinsames Personal, wird MW oder Lina auch über den Schlüssel bezahlt?\n(Akademie-Tag im Januar)",
+        "subtasks_done": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true,
+          "9": true
+        }
+      },
+      {
+        "id": "5b6b1b68-570f-4e8e-856b-00cd15d9667c",
+        "title": "Hotel GA reservieren",
+        "category": "FB EuU",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "Bundrate explizit angefragt",
+        "labels": "nachverfolgen",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "c7c2ce70-e2f1-4f5d-abac-bf3aa7fa392d",
+        "title": "Termin Florian verschieben/ herausbekommen was es mit dem Termin in der M 22 auf sich hat",
+        "category": "FB EuU",
+        "due": "2026-10-28",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-28T12:40:15.301+00:00",
+        "notes": "zeitgleich findet GFZ-Ethikkommission statt",
+        "labels": "aktiv",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "4f10b7df-1d4a-488a-bb3c-59440b19ad98",
+        "title": "Jour Fix KBG",
+        "category": "FB EuU",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "b684476b-d38a-424e-aa87-36206da31993",
+        "title": "Workout Tracker",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Rekorde\nmin vs sek\nApp-Symbol",
+        "subtasks_done": {
+          "1": false
+        }
+      },
+      {
+        "id": "3bb98e44-6757-4d7a-ae80-fcd07767063d",
+        "title": "Wiesbadener Brain",
+        "category": "Bildung",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-24T15:18:31.378+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "globale Suche\nTiefsttemperatur\nRezepte hinzufügen\nBring! Daten importieren?",
+        "subtasks_done": {
+          "2": false,
+          "3": true
+        }
+      },
+      {
+        "id": "fdaa7519-34cc-4a2d-beee-dfab4e90ab84",
+        "title": "Gespräche von Dienstag nachverfolgen",
+        "category": "FB EuU Kommunikation",
+        "due": "2026-10-29",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Gauvain\nMartina",
+        "subtasks_done": {}
+      },
+      {
+        "id": "b1b65040-fddd-4e79-b942-e46f75918ccc",
+        "title": "Pancake übung",
+        "category": "privat",
+        "due": "2026-10-21",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-22T11:05:37.665+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "4cad0531-0e22-4afe-8ede-263fbef7ab07",
+        "title": "Wochenaufgaben recap",
+        "category": "",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "d6f52c91-39aa-4b1a-be51-485d152da69a",
+        "title": "Verkehrsschule 1-4",
+        "category": "privat",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "4b1cb5db-7856-4e08-8268-0eb477bf54e6",
+        "title": "Transformer nachlesen",
+        "category": "",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "e759dae6-7c31-45bf-b79d-bae3b8dc287a",
+        "title": "Sport",
+        "category": "privat",
+        "due": "2026-10-21",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-22T11:05:38.709+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "0070ea99-8939-471b-82e0-997123a77885",
+        "title": "Dienstagsrunde",
+        "category": "FB EuU Kommunikation",
+        "due": "2026-10-21",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-21T15:12:23.461+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "703cdcd5-135b-49e3-bd28-6eb1abbbb93b",
+        "title": "Vaterland ",
+        "category": "privat",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "54934171-32fb-4121-bb8a-3e3ca75816ba",
+        "title": "Python Übung ",
+        "category": "",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-21T13:52:33.877+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "aa080974-4755-464c-861e-c062c387ffaf",
+        "title": "Dematerialization",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "ad2d3458-c081-412c-ab5b-13b6108767cc",
+        "title": "Stunden eintragen Cisco",
+        "category": "FB EuU Admin",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "2026-10-27",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "1a901a83-05f7-403d-aea0-1ce7c80484b9",
+        "title": "Fahrrad Licht hinten ",
+        "category": "",
+        "due": "2026-10-29",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "f1c450ea-babd-41b3-9998-d7af08ef8177",
+        "title": "Stunden eintragen Excel",
+        "category": "FB EuU Admin",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "2026-10-27",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "0d4b1a20-2946-470a-8870-6df2e96412c9",
+        "title": "JF KBG vorbereiten",
+        "category": "FB EuU",
+        "due": "2026-10-29",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "Agenden für AdV und MB vorbereiten",
+        "subtasks_done": {}
+      },
+      {
+        "id": "9448e7a4-d255-4a26-9373-7fdfd4169911",
+        "title": "Treffen der AG der administrativen Vorstandsmitglieder EuU  zur Finanzierung des Helmholtz-Forum EuU",
+        "category": "Finanzierung Forum E&E",
+        "due": "2026-11-03",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "707c2443-17a7-46b5-85d7-daaca079c5fe",
+        "title": "r ",
+        "category": "",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "eef7088d-4f14-48e8-b92d-f6dff50099a4",
+        "title": "Gute Struktur überlegen",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "Test",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "eeb2c397-0760-49a0-a69f-e12aefd6c147",
+        "title": "Wochenziele",
+        "category": "",
+        "due": "2026-10-26",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "Arbeit: Termin Forum E&E vorbereiten; JF KBG, Datahub => AI Basecamp\nEntwicklung / science: AI-readiness\nEntwicklung / wie gehe ich Dinge an: confidence, acceptance of failure, exposure\nGespräche vorbereiten: s.o.",
+        "labels": "nachverfolgen",
+        "subtasks": "Arbeit\nEntwicklung / science\nEntwicklung / wie gehe ich Dinge an\nGespräche vorbereiten \n",
+        "subtasks_done": {
+          "2": false,
+          "3": true
+        }
+      },
+      {
+        "id": "757e1635-4cea-4300-b281-e59b1f6b0620",
+        "title": "Telefonat Martina vorbereiten",
+        "category": "FB EuU",
+        "due": "2026-10-26",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-27T08:51:45.422+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "72915d92-1cda-4031-ae07-868ad162c59b",
+        "title": "G",
+        "category": "Bildung",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-23T06:03:05.069+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "57.0\n57.3",
+        "subtasks_done": {}
+      },
+      {
+        "id": "8f4e70c7-dc8a-43f9-ad1e-03331b38615e",
+        "title": "Stretching Nani",
+        "category": "Sport",
+        "due": "2026-11-01",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "daa63d74-c2b1-4cba-8bfa-2aa67b809429",
+        "title": "Handstand Malik",
+        "category": "",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "807ef9e8-87a5-412b-91c5-71b96b6f3ff7",
+        "title": "Weekly Podcasts ",
+        "category": "privat",
+        "due": "2026-10-27",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "nachverfolgen",
+        "subtasks": "Zeit \nLanz & Precht\nPOV\nLage der Nation\nAnne Will\nPlanetGeo: Geology\nSolved\nThe Great Simplification\n",
+        "subtasks_done": {
+          "0": true,
+          "1": true,
+          "2": true,
+          "3": true
+        }
+      },
+      {
+        "id": "80854c47-5c73-4aa4-8d9e-7023cbc8591f",
+        "title": "FIS Mail schicken ",
+        "category": "FB EuU",
+        "due": "2026-10-26",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-27T08:52:12.574+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "12636c7c-d5df-48ac-82d2-e551a730b821",
+        "title": "Literatur sortieren ",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "6b5b4b74-41e7-4f67-8857-61f10115200f",
+        "title": "Forum flex und Focus tauschen ",
+        "category": "FB EuU ",
+        "due": "2026-10-29",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-29T07:27:08.434+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "d1da10de-b823-4026-9199-9e1bd5cf6a13",
+        "title": "Arktisstrategie",
+        "category": "FB EuU",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "32d96dc8-40db-4b52-a814-55bc33a15116",
+        "title": "Pflanzen vom Balkon ",
+        "category": "privat",
+        "due": "2026-10-23",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "43bc6475-dd54-4a91-8243-05142c3fdb4c",
+        "title": "Cop 17",
+        "category": "",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-21T13:15:16.893+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "470c67d7-c6a8-462e-9911-12c6e8746c9e",
+        "title": "Shell & Github",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Unteraufgabe 1\n",
+        "subtasks_done": {}
+      },
+      {
+        "id": "19599754-5f06-478f-8020-d8f500d4bd58",
+        "title": "Spotify",
+        "category": "",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-21T13:02:23.605+00:00",
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "5cdec15f-6535-454a-8adf-2e1c7c697659",
+        "title": "Schwarz digits",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "816acc96-f1cb-484f-a498-7815be608272",
+        "title": "gute Struktur überlegen",
+        "category": "Bildung",
+        "due": "2026-10-23",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-23T13:17:47.267+00:00",
+        "notes": "test",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "ebfa7256-393e-4694-95d7-775c844fa87b",
+        "title": "Finanzierung Forum E&E vorbereiten",
+        "category": "FB EuU",
+        "due": "2026-10-23",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-23T09:40:37.081+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "Martina: 0,2 PP für Ankerpersonen ausgegeben in PoF IV? Sind nicht in-kind, sondern über Geld aus den inst. Mitteln (programmungebunden, aber nicht frei verwendbar)",
+        "subtasks_done": {}
+      },
+      {
+        "id": "0afc8a85-5ba1-4be1-9d50-1c7cb5789640",
+        "title": "Lokales Model /Ollama, LM Studio",
+        "category": "FB EuU Admin",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "https://lmstudio.ai/",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "b30f0660-e062-45e6-b665-1f0ab6a4d765",
+        "title": "Struktur für Themen/Projekte",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "7600a6a7-aa88-4bd7-bcc4-32080a7fa922",
+        "title": "Call Prototype Lab",
+        "category": "",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "https://www.helmholtz.de/forschung/aktuelle-ausschreibungen/ausschreibung/helmholtz-prototype-lab/",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "799a4101-e221-4eb0-83ce-66e2ccafc507",
+        "title": "Reminder Klinnert offene Punkte",
+        "category": "",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "Leitfaden-Papier => Umlaufbeschluss\nAnmietung M-37\n(Rahmenverträge anhand neuem LK-I-Schlüssel vor Start PoF V, 06-2027)\n",
+        "subtasks_done": {}
+      },
+      {
+        "id": "b87c621c-2502-4514-a62e-7e328abba0d2",
+        "title": "Telefonat Gauvain vorbereiten",
+        "category": "FB EuU",
+        "due": "2026-10-26",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-27T08:51:35.717+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "ef5c99f8-ddb5-4e25-bd02-4aebbe78372b",
+        "title": "Karls Geburtstag",
+        "category": "",
+        "due": "2026-10-23",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "9a21dc98-8715-49a6-a49c-b99f17d430b2",
+        "title": "Home-Mac: Konto",
+        "category": "Admin home",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "7149c547-f3fd-4f6a-95c3-4386bcc8b39b",
+        "title": "HTAD",
+        "category": "",
+        "due": "2026-10-26",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Quantenchallenge\nFAST-Initiative\nHightech Spaces",
+        "subtasks_done": {}
+      },
+      {
+        "id": "5e194f1a-5284-4e41-b550-9e7489a9e71b",
+        "title": "Ohrringe wecheln",
+        "category": "privat",
+        "due": "2026-12-04",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "85b4e8e5-fb76-4658-a2b6-1d9416111e66",
+        "title": "Zeit Artikel zu Naza noch einmal lesen",
+        "category": "Bildung",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "6a6f9795-2a6a-4a06-af6d-92ee0ff61b98",
+        "title": "Unterlagen für das Treffen der Admins zu Forum E&E verteilen",
+        "category": "Finanzierung Forum E&E",
+        "due": "2026-10-29",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "626c4581-15bf-499b-a7b2-d27c6b8db224",
+        "title": "Marie",
+        "category": "",
+        "due": "2026-11-02",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "aktiv",
+        "subtasks": "laterale Führung\nRollenbeschreibung\n0,2 Prozentpunkte, \"sonstige SynCom-Aktivitäten\"\nAufgabenprofil von 2024 noch aktuell, SynCom Governance",
+        "subtasks_done": {}
+      },
+      {
+        "id": "57ba734c-4ee7-402f-9c73-1074ef78f138",
+        "title": "Anmelden: Stretching in 14 Tagen ",
+        "category": "Sport",
+        "due": "2026-11-02",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "2026-10-26",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "88b6cd73-95b6-4f43-b4b5-d5d5afa43797",
+        "title": "Gitlab Anmedlung?",
+        "category": "FB EuU Admin",
+        "due": "2026-10-30",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "daily",
+        "last_completed": "2026-10-23",
+        "completed_at": null,
+        "notes": "https://events.hifis.net/event/3467/registrations/3418/",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "3c7731d3-9dff-4639-a41f-ff383d76e367",
+        "title": "Labels und Tags ",
+        "category": "Bildung",
+        "due": "",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-22T06:23:22.358+00:00",
+        "notes": "",
+        "labels": "wichtig",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "ba6370c6-9bae-4381-a25d-5380b35bbfd4",
+        "title": "Shell & Git oder XAI-Kurs anmelden",
+        "category": "FB EuU Admin",
+        "due": "2026-10-27",
+        "done": true,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": "2026-10-28T12:40:02.623+00:00",
+        "notes": "https://events.hifis.net/event/3722/registrations/3633/",
+        "labels": "nachverfolgen",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "c6376cea-37f1-4e26-a03a-07eef201486a",
+        "title": "Claude",
+        "category": "",
+        "due": "",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "https://events.datacamp.com/claude-prompt-to-build?utm_source=customerio&utm_medium=email&utm_campaign=261022_1-claude-prompt-to-build--na--engagement_2-mix_6-tier-2_8-emal-ci_11-franchise&dc_euid=21753850&access=global",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "c9012ee2-f905-482e-b679-9fcbf84b6ed4",
+        "title": "Anmelden: Handstand in 14 Tagen anmelden",
+        "category": "Sport",
+        "due": "2026-10-31",
+        "done": false,
+        "repeat_weekly": true,
+        "repeat": "weekly",
+        "last_completed": "2026-10-26",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "",
+        "subtasks_done": {}
+      },
+      {
+        "id": "7149caf7-55f3-488c-a1ac-aa0255f117b0",
+        "title": "Knowledge Base weiterentwickeln",
+        "category": "Bildung",
+        "due": "2026-10-27",
+        "done": false,
+        "repeat_weekly": false,
+        "repeat": "never",
+        "last_completed": "",
+        "completed_at": null,
+        "notes": "",
+        "labels": "",
+        "subtasks": "Im Tab/Bereich Wissen: Netzwerk-Feld Größe anpassen\nIm Tab/Bereich Projekte/Themen => Farben zu Projekten selbst zuornden\nIm Tab/Bereich Diagramm: Tabelle Achsenbereich festlegen\nKalender auf eigenen Bereich\nGesprächsnotizen\nAufgaben und Termine anklicken: Popup Window mit Termineigenschaften\neinzelne Termine aus einer Serie mit Notizen ausstatten\nAufgaben per Drag&drob verschieben\ngelöschte Termine werden noch angezeigt\nIm Tab/Bereich Gewohnheiten: Farben zuordnen und verschieben \njährliche Termine (Auswahl) ergänzen",
+        "subtasks_done": {
+          "0": false,
+          "1": false,
+          "2": false,
+          "3": false,
+          "4": false,
+          "5": false,
+          "7": false,
+          "8": false
+        }
+      }
+    ],
+    "links": [
+      {
+        "id": "ca40ca38-3c15-4bb9-9c53-180c50eec736",
+        "title": "Swin Transformer: Hierarchical Vision Transformer using ShiftedWindows",
+        "url": "https://www.dropbox.com/scl/fi/7bfjg5evaepyyunehyt3e/2103.14030v2.pdf?rlkey=tfjjl2easlnwattgwzc8elhyg&dl=0",
+        "notes": "",
+        "category": "vision transformer",
+        "kind": "Weblink"
+      },
+      {
+        "id": "9e77f47e-8b97-460f-a586-8d22e139504e",
+        "title": "From publication to action: connecting science, policy, and public attention for ocean-related climate mitigation",
+        "url": "https://www.dropbox.com/scl/fi/cr449ju2b2zj2u60whesv/Veilta-publication-to-action-2026.pdf?rlkey=nma6np3vt1xomepm3amyt40ri&dl=0",
+        "notes": "Text",
+        "category": "Science Management",
+        "kind": "Weblink"
+      },
+      {
+        "id": "e9a2729e-64cc-4c50-be5b-79e9315ec7e1",
+        "title": "AlphaEarth Foundations: An embedding field model for accurate and efficient global mapping from sparse label data",
+        "url": "https://www.dropbox.com/scl/fi/l6cvdt1lz8d3qpr13kmq6/alphaearth-foundations-2025.pdf?rlkey=68w3rakd9m0dk5l1893a1489m&dl=0",
+        "notes": "",
+        "category": " AlphaEarth Foundations,",
+        "kind": "Weblink"
+      },
+      {
+        "id": "96e855ca-83aa-41d1-86dd-da3a64214e9d",
+        "title": "Bridging the deployment gap in automated moth monitoring through biodiversity foundation models",
+        "url": "https://www.dropbox.com/scl/fi/i3fdawxv8nl51murkr666/s41598-026-75760-1_reference.pdf?rlkey=t2u4ampteiplu4sprf5rkw9gv&dl=0",
+        "notes": "",
+        "category": "Deloyment gap",
+        "kind": "Weblink"
+      },
+      {
+        "id": "babe9d30-f7bb-474c-b98b-9e69f6266dcf",
+        "title": "Canadian lakes show contrasting phosphorus trends across climatic regions",
+        "url": "https://www.dropbox.com/scl/fi/8vack7il86ccs6tyr9tw2/s43247-026-04113-7_reference.pdf?rlkey=jowmqk8nrmhiiibakuyf7nlrm&dl=0",
+        "notes": "",
+        "category": "DL, canadian lakes",
+        "kind": "Weblink"
+      },
+      {
+        "id": "61aa9edb-ef78-4d3e-b3ff-e26989f7e7c4",
+        "title": "The global potential of aquavoltaics for power generation and offsetting the carbon footprint of freshwater aquaculture",
+        "url": "https://www.dropbox.com/scl/fi/76ogtfiofiv6xavd3o7y9/s43016-026-01446-6.pdf?rlkey=1fp740e7q62qtveq2tq9egwo2&dl=0",
+        "notes": "",
+        "category": "Aquavoltaics",
+        "kind": "Weblink"
+      },
+      {
+        "id": "ec479c64-754d-4869-9f8c-0eb0b152cc3f",
+        "title": "Phase transitions reveal hierarchical structure in deep neural networks",
+        "url": "https://www.dropbox.com/scl/fi/yr5i39u47s2v5lgvro5vh/s44488-026-00021-z.pdf?rlkey=a8odja1ims0ryzda93e93or13&dl=0",
+        "notes": "Could analysing the geometry of neural networks eventually help us understand what Earth-observation foundation models actually learn?\nnew algorithm called Pathfinder, they identify hierarchical structures in neural-network loss landscapes and show how transitions correspond to the learning or forgetting of particular features.",
+        "category": "",
+        "kind": "Weblink"
+      },
+      {
+        "id": "c3bfce66-24d7-436a-84ba-f530f9aaef18",
+        "title": "Declining spring production in the Barents Sea ice zone under climate forcing",
+        "url": "https://www.dropbox.com/scl/fi/zu9pj6ied13jzqg1p8yhw/s41467-026-79272-4_reference.pdf?rlkey=jxrd0ilil3eb5v1jqkurh4hyn&dl=0",
+        "notes": "Abnahme der marinen Primärproduktion im eisbedeckten Bereich der Barentssee während der Frühjahrsmonate April und Mai zwischen 1998 und 2023 um 45 % \nE. Achterberg",
+        "category": "Barentssee, Primärproduktion",
+        "kind": "Weblink"
+      },
+      {
+        "id": "dd1d4525-b07e-4d79-a70c-ecc7b376709a",
+        "title": "A holistic framework for enhancing the resilience of grassland-based farming systems to climate extremes",
+        "url": "https://www.dropbox.com/scl/fi/h6sxrsy9a0m25yw4b51jk/s43016-026-01448-4.pdf?rlkey=vv7ap4lgehq14opakmqy2nnsx&dl=0",
+        "notes": "Ein internationales Forschungsteam mit Beteiligung von Julia Kunkel und Birgit Müller (UFZ) hat einen integrativen Bewertungsrahmen für die Widerstandsfähigkeit landwirtschaftlicher Grünlandsysteme gegenüber Klimaextremen entwickelt.",
+        "category": "Lawi, Klimaresilienz",
+        "kind": "Weblink"
+      },
+      {
+        "id": "473305d0-db50-4341-b66b-48f212a9fd6a",
+        "title": "Advancing subseasonal forecasting with machine learning",
+        "url": "https://www.dropbox.com/scl/fi/9pb7lky0cw9x8o0bf0bk3/Guan-ML-forecasting-2026.pdf?rlkey=k02a66wyown8mht2jm5srj7vf&st=d3n30cuf&dl=0",
+        "notes": "Die Klimatologie berücksichtigt die Saisonalität, während die Lagged Observations die Persistenz aktueller Wetteranomalien",
+        "category": "",
+        "kind": "Weblink"
+      }
+    ],
+    "cards": [
+      {
+        "id": "48c7663f-7f0c-456a-90a3-cae5a7637956",
+        "deck": "AI",
+        "front": "Was bedeutet \"Lean\"",
+        "back": "Lean ist ein Beweisassistent, eine Programmiersprache, mit der man mathematische Aussagen und Beweise so formuliert, dass ein Computer sie streng überprüfen kann.\nEin von einer KI erzeugter Beweis kann seltsam oder unanschaulich wirken, aber wenn Lean ihn akzeptiert, ist er nachweislich korrekt. Das löst ein Kernproblem von Sprachmodellen, nämlich dass sie überzeugend klingende Fehler machen können. Lean liefert eine unabhängige, objektive Verifikation. Systeme wie AlphaProof nutzen genau das: Das Modell schlägt Beweisschritte vor, und Lean prüft sie.",
+        "due": "2026-10-29",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "ceb3b12b-2a83-4b69-9593-c11ff158dac2",
+        "deck": "AI",
+        "front": "Was passiert bei der Rückpropagierung?",
+        "back": "Es ist eine mathematische Methode zum Training von ANNs. Hierbei führt die Rückpropagierung nach jedem Vorwärtsdurchlauf durch ein Netzwerk einen Rückwärtsdurchlauf durch und passt dabei die Parameter des Modells an, um dadurch bestimmte Verbindungen so zu verstärken, wie sie sich in unserem Gehirn nach dem Üben verstärken würden.",
+        "due": "2026-10-24",
+        "interval": 2,
+        "repetitions": 4
+      },
+      {
+        "id": "8b23672d-7c81-4888-a2fa-209e31a3c85d",
+        "deck": "AI",
+        "front": "Was ist Edge-Computing?",
+        "back": "Edge Computing bedeutet, dass Daten möglichst dort verarbeitet werden, wo sie entstehen, statt sie zunächst vollständig an ein entferntes Rechenzentrum oder in die Cloud zu übertragen.",
+        "due": "2026-10-27",
+        "interval": 5,
+        "repetitions": 3
+      },
+      {
+        "id": "da34607f-c8ed-48be-b2c0-d79874888984",
+        "deck": "AI",
+        "front": "Was bedeutet „alignment“ bei KI-Agenten",
+        "back": "„Alignment” bei KI-Agenten bezeichnet, wie gut das Verhalten eines Agenten mit den tatsächlichen Zielen und Absichten der Person übereinstimmt, die ihn einsetzt – und allgemeiner mit menschlichen Werten und Sicherheitsanforderungen.",
+        "due": "2026-10-27",
+        "interval": 5,
+        "repetitions": 2
+      },
+      {
+        "id": "134795e3-5c95-489d-b107-55e93110bc6d",
+        "deck": "AI",
+        "front": "Was ist ein „Inductive Bias“?",
+        "back": "Eingebaute strukturelle Annahmen eines Modells über die Daten (z. B. CNNs: Translationsinvarianz; physikalische Modelle: Erhaltungssätze)\nDer Inductive Bias begrenzt den Raum möglicher Lösungen und lenkt das Lernen. Das spart Daten, schränkt aber die Flexibilität ein.",
+        "due": "2026-10-24",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "4b7e19d9-1308-5d97-8e16-c6ef90382029",
+        "deck": "KI / Deep Learning",
+        "front": "APIs (Application Programming Interfaces)",
+        "back": "Programmierschnittstellen, über die Software-Komponenten oder Systeme standardisiert miteinander kommunizieren können. Im KI-Kontext: Zugriffspunkt, über den man ein trainiertes Modell oder einen Dienst (z. B. ein Foundation Model) nutzen kann, ohne dessen interne Implementierung zu kennen.",
+        "due": "2026-10-24",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "cfcce78e-8578-5882-ac60-8fcb10645a96",
+        "deck": "KI / Erdbeobachtung",
+        "front": "OOD (Out-of-Distribution)",
+        "back": "Daten/Situationen außerhalb der Trainingsverteilung eines Modells. Modell liefert trotzdem Vorhersage → Risiko “silent extrapolation”.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "29fdd124-6497-58c9-8498-8b9b12f0286f",
+        "deck": "KI / Deep Learning",
+        "front": "Was versteht man unter „Datenhunger“ bei Machine-Learning-Modellen?",
+        "back": "Der hohe Bedarf an großen Trainingsdatenmengen, weil ein Modell mit wenigen eingebauten Annahmen vieles aus den Daten selbst lernen muss (z. B. Transformer)\nJe weniger Inductive Bias ein Modell mitbringt, desto mehr Struktur muss es aus den Daten ableiten. Das erklärt den großen Datenbedarf, etwa bei Transformern.",
+        "due": "2026-10-24",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "2ff75d72-13bf-4598-b3cb-fbdf39f7a4c5",
+        "deck": "AI",
+        "front": "Was ist die Besonderheit von Artificial Neural Networks?",
+        "back": "Da verschiedene Neuronen in der Lage sind, Informationen unabhängig voneinander zu verarbeiten, können ANNs Lösungen für nichtlineare Probleme finden.",
+        "due": "2026-10-27",
+        "interval": 5,
+        "repetitions": 3
+      },
+      {
+        "id": "6fd44abd-aee2-5754-9ba2-ee818abcd499",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Climate Reanalysis",
+        "back": "Climate Reanalysis (Klimareanalyse) ist ein Verfahren, bei dem historische Wetterbeobachtungen mit einem physikalischen Wettermodell kombiniert werden, um ein möglichst vollständiges und konsistentes Bild des vergangenen Zustands der Atmosphäre und anderer Komponenten des Klimasystems zu rekonstruieren.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "63361a6c-e0d6-5ec8-8038-f34d714be726",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Adversarial Attack",
+        "back": "Gezielt konstruierte, oft unmerkliche Störung der Eingabedaten, um ein Modell zu täuschen. Abzugrenzen von natürlicher OOD-Variabilität und von Datenmanipulation (z. B. Carbon-Credit-Betrug).",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "3ffb5ace-633f-5bef-854a-07e57cd0cc26",
+        "deck": "KI / Erdbeobachtung",
+        "front": "POC (Particulate Organic Carbon)",
+        "back": "Partikulärer organischer Kohlenstoff (fest, z. B. Plankton-Reste) – Gegensatz: DOC (dissolved). Relevant für biologische Kohlenstoffpumpe/AqQua.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "250b9c76-082b-5878-b61d-103791d3bb32",
+        "deck": "KI / Deep Learning",
+        "front": "Vision-Transformer (ViT)",
+        "back": "Anwendung der Transformer-Architektur auf Bilddaten: Ein Bild wird in feste, quadratische Patches zerlegt, die wie \"Tokens\" (analog zu Wörtern in der Sprache) behandelt und per Self-Attention verarbeitet werden. Grundlage vieler moderner Bild- und EO-Foundation-Models (z. B. Prithvi).",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "81a99c54-524a-5a56-94ed-ad7029923c9f",
+        "deck": "KI / Deep Learning",
+        "front": "Multimodale Daten",
+        "back": "Daten, die aus mehreren unterschiedlichen Quellen oder Sensortypen stammen und jeweils andere Aspekte desselben Phänomens erfassen (z. B. optisch + Radar + LiDAR bei der Biomasseschätzung in 3D-ABC). Multimodale Modelle müssen diese heterogenen Informationsquellen sinnvoll kombinieren (fusionieren).",
+        "due": "2026-10-24",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "f9133dd2-1a5f-58f2-863b-304f75d3a512",
+        "deck": "KI / Deep Learning",
+        "front": "Zero-Shot Learning",
+        "back": "Ein Modell führt eine Aufgabe aus, für die es während des Trainings keine gelabelten Beispiele gesehen hat – basierend allein auf generalisiertem Wissen aus dem Pretraining. Unterscheidet sich von Fine-Tuning (kein Nachtraining) und In-Context Learning (keine Beispiele im Prompt nötig).",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "371c2a60-9fec-4d71-8bdb-9ca876b0850c",
+        "deck": "AI",
+        "front": "Was bedeutet Translationsinvarianz, und welches Modell nutzt sie als Inductive Bias?",
+        "back": "Das Ergebnis hängt nicht von der Position eines Musters im Input ab (z. B. Katze links oder rechts im Bild); typisch für CNNs\nDurch Faltungen mit geteilten Gewichten erkennt ein CNN dasselbe Muster an jeder Bildposition. Diese eingebaute Annahme macht es dateneffizienter als Modelle ohne diesen Bias.",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "0411733f-6fa1-57c9-a792-e61149f1667d",
+        "deck": "KI / Deep Learning",
+        "front": "LSTM (Long Short-Term Memory)",
+        "back": "Eine Variante rekurrenter neuronaler Netze (RNN) für sequenzielle Daten (z. B. Zeitreihen, Text). Über Gates (Input-, Forget-, Output-Gate) steuert das LSTM, welche Information über lange Sequenzen hinweg behalten oder vergessen wird – löst damit das Vanishing-Gradient-Problem klassischer RNNs. Wurde für sequenzielle Aufgaben zunehmend von Transformern abgelöst.",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "6f02e220-c393-5def-85ab-72e1ed746232",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Was ist der Unterschied zwischen Explainable AI (XAI) und Causal AI in diesem Kontext?",
+        "back": "XAI nutzt Attributionsmethoden/Saliency Maps, um Mechanismen hinter Vorhersagen sichtbar zu machen (Vertrauen, Transparenz). Causal AI geht weiter und identifiziert echte Ursache-Wirkungs-Beziehungen statt bloßer Korrelationen – wichtig für Generalisierung über Regime-Wechsel hinweg.",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "046fa521-1db4-5653-af21-96b6ff19dad5",
+        "deck": "KI / Deep Learning",
+        "front": "Homogenization (Homogenisierung)",
+        "back": "Tendenz, dass viele nachgelagerte Anwendungen und Systeme auf denselben wenigen Foundation Models aufbauen. Vorteil: Effizienz und geteilter Fortschritt. Risiko: Fehler, Biases oder blinde Flecken des Basismodells pflanzen sich in alle darauf aufbauenden Anwendungen fort (\"single point of failure\").",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "90bde169-4bbe-54bf-8571-9bd609f2c295",
+        "deck": "KI / Deep Learning",
+        "front": "Transfer Learning",
+        "back": "Übertragung von Wissen (gelernten Repräsentationen) eines Modells von einer Aufgabe/Domäne auf eine andere, verwandte Aufgabe. Statt von Grund auf neu zu trainieren, wird ein vortrainiertes Modell als Ausgangspunkt genutzt – spart Daten und Rechenzeit, besonders wertvoll in datenarmen Bereichen (z. B. Geowissenschaften).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "96619623-61b8-5935-8807-0ade8db6bb9d",
+        "deck": "KI / Deep Learning",
+        "front": "Pretraining (Vortraining)",
+        "back": "Erste, meist selbstüberwachte Trainingsphase eines Modells auf einem großen, generischen Datensatz, um allgemeine Muster/Repräsentationen zu lernen – bevor eine Anpassung an eine spezifische Aufgabe erfolgt. Grundlage von Foundation Models (z. B. ClimaX auf CMIP6, Aurora auf ERA5).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "9dfc83c3-eee3-5f62-8ac4-d1321118d298",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Was unterscheidet \"Forecast/Prediction\" von \"Projection\" begrifflich?",
+        "back": "Forecasts (Wetter) sind probabilistische Schätzungen, kalibriert an historischen Daten (verifizierbar). Climate Projections sind bedingte Aussagen basierend auf Emissionsszenarien (z. B. SSPs) – ohne verifizierbare Grundwahrheit, da die Zukunft nicht beobachtbar ist.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "292b3529-372f-5bef-b207-0b6f4c7b9af5",
+        "deck": "KI / Deep Learning",
+        "front": "Counterfactuals (Kontrafaktische Erklärungen)",
+        "back": "Beantworten die Frage: \"Was hätte sich an der Eingabe minimal ändern müssen, damit das Modell eine andere Entscheidung getroffen hätte?\" Eine Methode der Explainable AI (XAI) und zentral für Attributionsanalysen (z. B. Vergleich faktischer vs. kontrafaktischer Klimazustände bei Extremwetter-Attribution).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "1fc0c6c2-e188-5cd5-89b6-7060a5ecf5bc",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Was ist die zentrale These des Papers?",
+        "back": "KI löst die traditionelle Trennung zwischen Wetter- und Klimawissenschaft auf, indem sie ein einheitliches Framework ermöglicht, das sowohl kurzfristige Vorhersagen (Sturm morgen) als auch langfristige Klimaprojektionen (nächstes Jahrhundert) abdeckt.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "493decae-5759-5a46-ba37-52251762c08b",
+        "deck": "KI / Deep Learning",
+        "front": "Nodes (Knoten)",
+        "back": "Grundeinheiten eines neuronalen Netzes (\"künstliche Neuronen\"). Jeder Node empfängt gewichtete Eingaben, summiert sie und wendet eine Aktivierungsfunktion an, um eine Ausgabe zu erzeugen. Nodes sind in Schichten (Layers) organisiert, deren Verknüpfung die Netzarchitektur bildet.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "aa9ccee7-1a8f-5429-b1fc-125e2af51d3d",
+        "deck": "KI / Deep Learning",
+        "front": "Emergence (Emergenz)",
+        "back": "Fähigkeiten oder Verhaltensweisen eines Modells, die erst ab einer bestimmten Modell-/Datengröße plötzlich auftreten und in kleineren Modellen nicht vorhanden oder vorhersagbar waren. Typisches Phänomen bei großen Foundation Models – schwer prospektiv zu prognostizieren, da kein linearer Zusammenhang zur Skalierung besteht.",
+        "due": "2026-10-23",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "3dc6fbb9-e3d2-5aad-8796-4ad6f23131c3",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Welche vier \"Handlungslinien\" (actions) schlagen die Autoren für die Zukunft vor?",
+        "back": "1) Differenzierbare, modulare Earth-System-Komponenten entwickeln (3–5 Jahre). 2) Robuste, gemeinsame Validierungs-Benchmarks etablieren (z. B. AIMIP). 3) Nachhaltigkeit & Demokratisierung fördern (Energieeffizienz, offener Datenzugang). 4) Community-Brücken bauen (interdisziplinäre Workshops, gemeinsame Konferenzen, Summer Schools).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "22708f7b-1d02-5b0a-a907-abcc0931e668",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Proprietary Data",
+        "back": "Daten im Besitz einer Organisation, nicht frei zugänglich (Gegensatz: Open Data, z. B. Sentinel/Copernicus).",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "062976cb-cf31-5d2c-b0b4-009286d6c142",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Wall-to-wall Map",
+        "back": "Flächendeckende, lückenlose Karte – entsteht durch Extrapolation spärlicher Footprint-Daten mittels flächendeckender Prädiktoren (z. B. Sentinel-2/SAR).",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "4ac4491e-0204-553f-a52f-afdae4bcf7d2",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Nenne drei prominente KI-Wettermodelle, die operationell getestet/eingesetzt werden.",
+        "back": "Pangu-Weather, Google's Weather Lab, ECMWF's AIFS (weitere: DWD's AICON, NOAA's AIGFS, Met Norway's Bris).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "5b8df916-7571-5ec5-8397-b746b7940e88",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Was ist ein Foundation Model im Kontext von Wetter/Klima, und nenne zwei Beispiele.",
+        "back": "Ein Modell, das auf großen, unlabeled, heterogenen Datensätzen allgemeine Repräsentationen lernt, die auf verschiedene Downstream-Aufgaben übertragbar sind. Beispiele: ClimaX (trainiert auf CMIP6), Aurora (trainiert auf ERA5), Prithvi WxC (trainiert auf MERRA-2).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "832f9287-2215-5694-8699-ec04462e01f1",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Was besagt der \"bias amplification\"-Effekt bei Hybrid-Physik-KI-Ansätzen?",
+        "back": "KI-Komponenten können Verzerrungen (Biases) aus den physikalischen Modellen, die sie emulieren, übernehmen und verstärken – innerhalb des Trainingsbereichs oft korrigierbar, außerhalb davon aber unvorhersehbar (Beispiel: NeuralGCM).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "1045ab2d-b6d5-5a23-8af5-6ee8aaf2d048",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Welche sozialen/ethischen Herausforderungen nennt das Paper für KI in Klimawissenschaft?",
+        "back": "Hoher Energie-/Rechenaufwand beim Training, ungleicher Zugang zu Rechenressourcen (Global North/South-Gefälle), mangelnde Transparenz (\"Black-Box\"), Vertrauensverlust bei Entscheidungsträgern, sowie Fairness-Risiken durch ungleiche Modellleistung in datenarmen Regionen.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "8e2a8b90-89cb-562a-9e49-582a95e61463",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Welche drei \"Brücken\" identifizieren die Autoren zwischen Wetter- und Klimamodellierung?",
+        "back": "1) Temporale Brücke: Subseasonal-to-Seasonal (S2S) als Mittelweg. 2) Kausale Brücke: KI-Attribution vergleicht faktische/kontrafaktische Klimazustände für Extremwetter-Ereignisse. 3) Strukturelle Brücke: gemeinsame Komponenten wie Foundation Models, Hybrid-Physik-KI und Transfer Learning.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "a6ad3edd-d615-58bd-9646-9a2907123fbb",
+        "deck": "Wetter & Klima mit KI",
+        "front": "Warum ist Out-of-Distribution (OOD) in Wetter vs. Klima unterschiedlich zu bewerten?",
+        "back": "Im Wetter bedeutet OOD meist ungesehene Anfangsbedingungen oder seltene Extreme in einem stationären System (\"gray swan events\"). Im Klima verschieben neue Forcing-Trajektorien (z. B. Treibhausgas-Szenarien) die gesamte Datenverteilung – die Extrapolation ist grundlegend schwieriger.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "a36d93ee-33cd-5d16-a03e-5ff92d0e59fc",
+        "deck": "KI / Deep Learning",
+        "front": "In-Context Learning",
+        "back": "Fähigkeit eines (meist großen, vortrainierten) Modells, sich anhand von Beispielen im Prompt/Input an eine neue Aufgabe anzupassen – ohne dass die Modellgewichte aktualisiert oder neu trainiert werden. Das \"Lernen\" findet nur innerhalb des gegebenen Kontexts statt, nicht durch Gradientenupdate.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "b59e9088-29a2-5e84-9c7d-64a3a99ad892",
+        "deck": "KI / Deep Learning",
+        "front": "Fine-Tuning (Feinabstimmung)",
+        "back": "Weiterführendes Training eines bereits vortrainierten Modells auf einem kleineren, aufgabenspezifischen (meist gelabelten) Datensatz. Die Modellgewichte werden dabei angepasst – im Gegensatz zum In-Context Learning, das ohne Gewichtsänderung auskommt.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "6cccc256-a3db-52fd-8061-869f05aa91d0",
+        "deck": "KI / Deep Learning",
+        "front": "Annotation von Datensätzen",
+        "back": "Prozess, Rohdaten mit Ground-Truth-Labels zu versehen (z. B. Landbedeckungsklasse, Biomassewert, Objektgrenzen), damit sie für überwachtes Lernen (Supervised Learning) nutzbar werden. Oft der aufwändigste und teuerste Schritt eines ML-Projekts, besonders bei Expertenwissen (z. B. Fernerkundung).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "a23e6780-eed8-51c8-a9d7-e3fb93a775d1",
+        "deck": "KI / Deep Learning",
+        "front": "Embedding",
+        "back": "Dichte, niedrigdimensionale Vektor-Repräsentation von Daten (Wörter, Bilder, Zeitreihenabschnitte etc.) in einem kontinuierlichen Vektorraum. Ähnliche Objekte liegen im Embedding-Raum nahe beieinander – dadurch werden semantische/strukturelle Beziehungen für das Modell rechnerisch nutzbar.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "ec6151f3-e1f8-581b-a202-002195cfed8b",
+        "deck": "KI / Deep Learning",
+        "front": "Transformer-Architektur",
+        "back": "Neuronale Netzarchitektur, die auf dem Self-Attention-Mechanismus basiert: Jedes Element einer Sequenz wird in Bezug zu allen anderen Elementen gewichtet, statt sequenziell (wie bei RNN/LSTM) verarbeitet zu werden. Ermöglicht Parallelisierung und ist die strukturelle Basis fast aller heutigen Foundation Models.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "3d2844b2-04bf-5d08-8dd5-021ae249bfd2",
+        "deck": "KI / Deep Learning",
+        "front": "Encoder-Decoder",
+        "back": "Architekturmuster, bei dem ein Encoder die Eingabe in eine komprimierte, abstrakte Repräsentation (Embedding) überführt, und ein Decoder daraus die Zielausgabe generiert. Beispiele: maschinelle Übersetzung, Bildsegmentierung, viele generative Foundation Models.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "052a5fe5-1e68-5729-b1ed-577a511aed0b",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Transformer vs. LSTM",
+        "back": "Transformer: parallelisierbar, gut bei langen Abhängigkeiten, aber quadratische Rechenkomplexität + hoher Datenbedarf. LSTM: linear, weniger datenhungrig, aber begrenzte Fernabhängigkeiten. Kein generelles “besser”, sondern Trade-off je nach Datenmenge/Sequenzlänge.",
+        "due": "2026-10-22",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "2e82a6ed-f6ba-5873-9c95-6ac6838c5321",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Footprint (Lidar)",
+        "back": "Kreisförmige Bodenfläche, die ein einzelner Laserpuls erfasst (z. B. GEDI, ~25 m). Liefert punktuelle, keine flächendeckenden Messungen.",
+        "due": "2026-10-22",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "40318caa-bf92-5187-8530-a71e8babe528",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Embedding Space",
+        "back": "Mehrdimensionaler Vektorraum, in den ein Modell Eingabedaten übersetzt. Ähnliche Objekte liegen nah beieinander; Struktur zeigt, was das Modell gelernt hat.",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "3087b752-7140-5a72-b98a-941d7b28fbac",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Self-Supervised Learning (SSL)",
+        "back": "Trainingsmethode ohne menschliche Labels – Modell generiert eigene Lernaufgaben aus den Rohdaten (z. B. verdeckte Bildteile vorhersagen).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "3db96c76-321f-5f29-83cc-26e37bb88388",
+        "deck": "KI / Erdbeobachtung",
+        "front": "MLLM (Multimodal Large Language Model)",
+        "back": "Unterkategorie von Foundation Models: verarbeitet mehrere Modalitäten (Text, Bild, …) mit einem LLM als Backbone. Nicht jedes multimodale FM ist ein MLLM.",
+        "due": "2026-10-22",
+        "interval": 1,
+        "repetitions": 1
+      },
+      {
+        "id": "29a3f2b5-af25-587d-af19-b6603f601320",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Natural Data (vs. EO Data)",
+        "back": "Klassische Bilddatensätze (z. B. ImageNet: Alltagsfotos) vs. Erdbeobachtungsdaten (Satellit, andere Perspektive/Spektren/Skalen) → “Domain Gap”.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "d154ee49-d3ff-5e97-9b7a-1c2dd475e56a",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Was bedeutet LSTM?",
+        "back": "LSTM (Long Short-Term Memory)\n\nEin spezielles rekurrentes neuronales Netzwerk (RNN), das zeitliche Abhängigkeiten erkennt und Informationen über längere Zeiträume speichern kann.\nFunktionsweise: Drei Gates steuern, welche Informationen vergessen, gespeichert und weitergegeben werden.\nAnwendung: Zeitreihenprognosen, z. B. Temperatur, Niederschlag oder Flussabfluss.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      },
+      {
+        "id": "48556ff0-9548-5ef5-968a-a8b9a558ce9f",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Sinusoidal Encoding",
+        "back": "Kodierung von Position/Koordinate/Zeit über Sinus-/Kosinus- Funktionen unterschiedlicher Frequenz. Wichtig für Transformer (keine inhärente Ordnung) und zyklische Größen (Jahreszeit, Geokoordinaten).",
+        "due": "2026-10-21",
+        "interval": 0,
+        "repetitions": 0
+      },
+      {
+        "id": "31b1c65b-b4c1-557b-9b40-820c4f9994ca",
+        "deck": "KI / Erdbeobachtung",
+        "front": "Foundation Model",
+        "back": "Modell, auf breiten Daten (oft self-supervised) vortrainiert, adaptierbar auf viele Aufgaben. Übergeordnete Kategorie – modalitätsunabhängig.",
+        "due": "2026-10-23",
+        "interval": 2,
+        "repetitions": 1
+      }
+    ],
+    "maps": [
+      {
+        "id": "c57d4d6d-8adc-4efb-8cfb-2f0fa1c2fd0c",
+        "title": "Neue Mindmap",
+        "nodes": [
+          {
+            "x": 20.477142333984375,
+            "y": 25.57339859008789,
+            "id": "13bbaed7-9181-41c4-b354-e8948b67f09b",
+            "text": "8 Uhr"
+          },
+          {
+            "x": 21.29279327392578,
+            "y": 84.36215209960938,
+            "id": "09db52a4-8504-4d71-a842-c0ae69229bb2",
+            "text": "9 Uhr"
+          },
+          {
+            "x": 22.92412567138672,
+            "y": 142.32504272460938,
+            "id": "fc80dfb8-d694-48cf-ac3a-ab49b37b3bd5",
+            "text": "10 Uhr"
+          },
+          {
+            "x": 22.92412567138672,
+            "y": 201.92945861816406,
+            "id": "6ff5f399-91e5-4b01-8067-e17169b1bf2a",
+            "text": "11 Uhr"
+          },
+          {
+            "x": 24.555419921875,
+            "y": 261.5236511230469,
+            "id": "9bb29495-2311-43eb-a663-df118c3ef992",
+            "text": "12 Uhr"
+          },
+          {
+            "x": 22.108444213867188,
+            "y": 317.04974365234375,
+            "id": "4536a395-a2fa-4a37-8a02-c8e709884da1",
+            "text": "13 Uhr"
+          },
+          {
+            "x": 22.108444213867188,
+            "y": 378.2752990722656,
+            "id": "abf8f240-0d2b-48db-a391-2f7254887f6c",
+            "text": "14 Uhr"
+          },
+          {
+            "x": 355.214111328125,
+            "y": 33.74020767211914,
+            "id": "489fef40-b9ef-45dd-bbd9-6519a1b0b43a",
+            "text": "15 Uhr"
+          },
+          {
+            "x": 358.4767150878906,
+            "y": 99.86988067626953,
+            "id": "2f5f0ed2-712a-4e10-801a-780609df5aa9",
+            "text": "16 Uhr"
+          },
+          {
+            "x": 358.4767150878906,
+            "y": 161.1056365966797,
+            "id": "dc159197-7457-4f58-a061-40174bc473f8",
+            "text": "17 Uhr"
+          }
+        ],
+        "edges": []
+      },
+      {
+        "id": "557253d2-29ba-430e-8716-09b6f321871b",
+        "title": "18 Uhr",
+        "nodes": [
+          {
+            "x": 11.494674682617188,
+            "y": 13.328296661376953,
+            "id": "618d9555-8822-449c-b3d4-4502f2d6b9ab",
+            "text": "8 Uhr"
+          },
+          {
+            "x": 14.757301330566406,
+            "y": 71.45431518554688,
+            "id": "4f3b642f-c3bf-433e-985d-a548ac70b578",
+            "text": "9 Uhr"
+          },
+          {
+            "x": 18.835617065429688,
+            "y": 128.4486083984375,
+            "id": "d6150660-8d24-4ba9-a9a7-4d64b8851e38",
+            "text": "10 Uhr"
+          },
+          {
+            "x": 17.20428466796875,
+            "y": 186.41148376464844,
+            "id": "6a3016bf-1ae5-4994-8f19-ee931399fed4",
+            "text": "11 Uhr"
+          },
+          {
+            "x": 14.757301330566406,
+            "y": 246.83154296875,
+            "id": "66460cd4-8187-4200-864e-5998ae57ff06",
+            "text": "12 Uhr"
+          },
+          {
+            "x": 16.388633728027344,
+            "y": 311.3299255371094,
+            "id": "231ad021-e571-46e1-a1f0-bf472aa8b289",
+            "text": "13 Uhr"
+          },
+          {
+            "x": 362.5652160644531,
+            "y": 15.398029327392578,
+            "id": "b35d7397-4238-40b1-aa7d-402c41abfd1a",
+            "text": "14 Uhr"
+          },
+          {
+            "x": 360.10809326171875,
+            "y": 70.92413330078125,
+            "id": "c7d26797-275e-48d1-a880-31f5a2b57909",
+            "text": "15 Uhr"
+          },
+          {
+            "x": 361.7496032714844,
+            "y": 124.80870056152344,
+            "id": "6dae5f0a-5390-4035-92be-7801ff7802cc",
+            "text": "16 Uhr"
+          },
+          {
+            "x": 360.9237060546875,
+            "y": 178.6933135986328,
+            "id": "619f8d4e-059a-4d1a-8382-ad0259af1eaf",
+            "text": "17 Uhr"
+          },
+          {
+            "x": 367.4591979980469,
+            "y": 234.209228515625,
+            "id": "329eee17-7630-4d31-8b0a-ec2a3704b70d",
+            "text": "18 Uhr"
+          },
+          {
+            "x": 370.72186279296875,
+            "y": 291.3564147949219,
+            "id": "aaa95928-d49d-470a-8c2c-c14d6bfdac22",
+            "text": "19 Uhr"
+          },
+          {
+            "x": 521.7618408203125,
+            "y": 126.44003295898438,
+            "id": "7779a1fa-8612-4779-a6c7-2d84333dc7c6",
+            "text": "Dr. Hess"
+          },
+          {
+            "x": 17.20428466796875,
+            "y": 386.5032958984375,
+            "id": "d250658a-6cc7-4617-9878-ba5ca539194d",
+            "text": "Python"
+          },
+          {
+            "x": 168.24427795410156,
+            "y": 70.10848236083984,
+            "id": "08ca5951-a8bb-4775-9b63-604d88cee1ea",
+            "text": "Gespräche vorbereiten"
+          },
+          {
+            "x": 167.4285888671875,
+            "y": 187.67579650878906,
+            "id": "953bee1e-d996-47bb-85d5-7d616961466b",
+            "text": "Kurse anmelden und Emails abbarbeiten"
+          },
+          {
+            "x": 173.96408081054688,
+            "y": 130.5183563232422,
+            "id": "a8e98d78-6190-4558-bd10-ee710a1ece71",
+            "text": "Sport"
+          },
+          {
+            "x": 530.7443237304688,
+            "y": 233.39353942871094,
+            "id": "7a9f8f5c-e0cf-4284-a34d-ec97da67133e",
+            "text": "einkaufen"
+          },
+          {
+            "x": 524.218994140625,
+            "y": 357.496337890625,
+            "id": "575a8cf7-f280-409a-b000-521b810d0e6d",
+            "text": "Svenja"
+          },
+          {
+            "x": 177.22674560546875,
+            "y": 247.26998901367188,
+            "id": "412f4b7e-8b63-4081-80f5-29f33cda1a5f",
+            "text": "Termin 16:00 vorbereiten"
+          }
+        ],
+        "edges": []
+      }
+    ],
+    "sketches": [],
+    "habits": [
+      {
+        "id": "87ae9b8f-2823-46fd-b33e-c17b27460010",
+        "name": "USC oder outdoor",
+        "checks": {
+          "2026-10-22": true,
+          "2026-10-24": true,
+          "2026-10-25": true
+        },
+        "color": "#4DA3FF",
+        "order": 0
+      },
+      {
+        "id": "baaa5681-a0e2-4441-9140-504803ff7594",
+        "name": "Handstand balance",
+        "checks": {
+          "2026-10-18": true,
+          "2026-10-21": true,
+          "2026-10-24": true,
+          "2026-10-25": true,
+          "2026-10-27": true,
+          "2026-10-28": true,
+          "2026-10-29": true
+        },
+        "color": "#4DA3FF",
+        "order": 1
+      },
+      {
+        "id": "a0a5fc6b-4286-4003-a39a-b4d07c35627d",
+        "name": "Pancake stretch",
+        "checks": {
+          "2026-10-17": true,
+          "2026-10-19": true,
+          "2026-10-21": true,
+          "2026-10-23": true,
+          "2026-10-25": true,
+          "2026-10-27": true
+        },
+        "color": "#4DA3FF",
+        "order": 2
+      },
+      {
+        "id": "18f41fbf-fcc8-458e-8465-31ee070df372",
+        "name": "Press Kraft",
+        "checks": {
+          "2026-10-16": true,
+          "2026-10-18": true,
+          "2026-10-26": false,
+          "2026-10-28": true
+        },
+        "color": "#4DA3FF",
+        "order": 3
+      },
+      {
+        "id": "5bd4924e-daa0-4dac-80de-5ca524da3c65",
+        "name": "Agnucoston",
+        "checks": {
+          "2026-10-22": true,
+          "2026-10-23": true,
+          "2026-10-26": true,
+          "2026-10-27": true,
+          "2026-10-28": true,
+          "2026-10-29": true
+        },
+        "color": "#ffd700",
+        "order": 4
+      },
+      {
+        "id": "33e3bfe1-1468-4db5-b5e3-2ee0f4dfe1d4",
+        "name": "Vitamin D",
+        "checks": {
+          "2026-10-22": true,
+          "2026-10-23": true,
+          "2026-10-25": true,
+          "2026-10-26": true,
+          "2026-10-27": true,
+          "2026-10-28": true,
+          "2026-10-29": true
+        },
+        "color": "#ffd700",
+        "order": 5
+      },
+      {
+        "id": "40c37db2-654c-4954-b088-1eab719ddd52",
+        "name": "10 min Python",
+        "checks": {
+          "2026-10-20": false,
+          "2026-10-21": true,
+          "2026-10-22": true,
+          "2026-10-23": true,
+          "2026-10-26": true,
+          "2026-10-27": true,
+          "2026-10-28": true,
+          "2026-10-29": true
+        },
+        "color": "#00d400",
+        "order": 6
+      },
+      {
+        "id": "95f9095f-7e12-45e1-9867-7d21f64328c2",
+        "name": "Journal",
+        "checks": {
+          "2026-10-20": false,
+          "2026-10-21": true,
+          "2026-10-22": true,
+          "2026-10-23": true,
+          "2026-10-24": true,
+          "2026-10-25": true,
+          "2026-10-26": true,
+          "2026-10-27": true,
+          "2026-10-28": true,
+          "2026-10-29": true
+        },
+        "color": "#00d400",
+        "order": 7
+      },
+      {
+        "id": "526252e6-f52e-4a73-ab80-3f216003be1e",
+        "name": "Jonglieren",
+        "checks": {
+          "2026-10-29": true
+        },
+        "color": "#a5d1fe",
+        "order": 8
+      },
+      {
+        "id": "063cb7e3-eda8-4094-a3e3-646a36206d7b",
+        "name": "Haare",
+        "checks": {},
+        "color": "#b585e9",
+        "order": 9
+      }
+    ],
+    "chartTables": [
+      {
+        "id": "9db09db9-cd1f-435b-81d2-2be459c2fa17",
+        "title": "Whatever",
+        "rows": [
+          {
+            "x": "21.10.",
+            "y": "57,0"
+          },
+          {
+            "x": "22.10.",
+            "y": "57,3"
+          },
+          {
+            "x": "23.10.",
+            "y": "56,6"
+          },
+          {
+            "x": "24.10.",
+            "y": "57"
+          },
+          {
+            "x": "25.10.",
+            "y": "56,9"
+          },
+          {
+            "x": "26.10.",
+            "y": "57,7"
+          },
+          {
+            "x": "27.10.",
+            "y": "57,8"
+          },
+          {
+            "x": "28.10.",
+            "y": "56,9"
+          },
+          {
+            "x": "",
+            "y": ""
+          }
+        ],
+        "chartType": "line",
+        "yMin": 55,
+        "yMax": 59
+      }
+    ],
+    "labelPalette": [
+      {
+        "id": "222a1ff7-46dd-49cc-827f-10c8c4624970",
+        "name": "wichtig",
+        "color": "#ff6a00"
+      },
+      {
+        "id": "094a0e4a-248b-42e8-919c-ff00c8d3d60c",
+        "name": "nachverfolgen",
+        "color": "#fec700"
+      },
+      {
+        "id": "d6e0b98c-c44d-4f4d-9470-9fbdf48b9d62",
+        "name": "Info",
+        "color": "#77bb41"
+      },
+      {
+        "id": "63039f44-8537-49d6-bf08-498125770d4f",
+        "name": "dringend",
+        "color": "#ff6251"
+      },
+      {
+        "id": "6ca52b87-671c-4d7f-8d17-36fb293230ab",
+        "name": "aktiv",
+        "color": "#0061ff"
+      },
+      {
+        "id": "c75f326b-e8dc-4ca8-b3d2-87def3f875f9",
+        "name": "Gespräche / Kommunikation",
+        "color": "#44c7fe"
+      },
+      {
+        "id": "57a64ec4-d830-4aa5-aced-2ab27da34d2e",
+        "name": "Termin",
+        "color": "#74fef6"
+      }
+    ],
+    "projectRecords": [
+      {
+        "id": "48583483-79df-4749-b306-39ad89f0aec6",
+        "goal": "World Data",
+        "start": "2026-10-27",
+        "title": "App entwickeln",
+        "status": "Aktiv",
+        "target": "2026-11-30",
+        "nodePos": {
+          "x": 217.54327392578125,
+          "y": 646.7128295898438
+        }
+      },
+      {
+        "id": "f995407d-7f3f-48a1-86a4-5d52d171c22c",
+        "goal": "",
+        "start": "",
+        "title": "Finanzierung Forum E&E",
+        "status": "Aktiv",
+        "target": "2026-12-07",
+        "nodePos": {
+          "x": 271.99932861328125,
+          "y": 163.97802734375
+        }
+      },
+      {
+        "id": "d554a6cc-5652-4c56-8543-0efd64c60d08",
+        "goal": "Überblick über die zahlreichen Bücher und Publikationen behalten ",
+        "start": "2026-10-24",
+        "title": "Literatur lesen ",
+        "status": "Aktiv",
+        "target": "2026-12-31",
+        "nodePos": {
+          "x": 291.13275146484375,
+          "y": 565.8838500976562
+        }
+      },
+      {
+        "id": "54e963a9-8724-405d-8bab-45d431d3175f",
+        "goal": "",
+        "start": "2026-09-21",
+        "title": "Einstellung Delegierte ",
+        "status": "Aktiv",
+        "target": "2026-12-01",
+        "nodePos": {
+          "x": 87.15411376953125,
+          "y": 291.15069580078125
+        }
+      },
+      {
+        "id": "2820341f-01c1-4a9c-bafd-298109536574",
+        "goal": "Optionen für Narrativ bzgl. Weiterfinanzierung AI Basecamp",
+        "start": "2026-09-21",
+        "title": "Weiterentwicklung DataHub zu Basecamp",
+        "status": "aktiv",
+        "target": "2027-03-05",
+        "nodePos": {
+          "x": 216.66766357421875,
+          "y": 59.90694046020508
+        }
+      },
+      {
+        "id": "81e1b099-9d7b-4c12-8d2e-4934c33471d5",
+        "goal": "",
+        "start": "2026-09-21",
+        "title": "Reform der PoF",
+        "status": "Aktiv",
+        "target": "2027-01-31"
+      },
+      {
+        "id": "aa2557e6-d263-4756-9212-5c552a98b1f7",
+        "title": "FB EuU",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "992d06c9-11fa-424b-b73e-81758342ab16",
+        "title": "privat",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "0a95fc64-026b-4b67-b7ec-85046336c134",
+        "title": "FB EuU Admin",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "f28c1c99-20d8-46f0-9361-35991ba94907",
+        "title": "FB EuU Kommunikation",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "c70a49c8-e4f9-4d36-9d44-d29a3185fff1",
+        "title": "Bildung",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "251260f1-3120-41c5-90f0-80a5b1ecca4b",
+        "title": "Sport",
+        "goal": "",
+        "status": "Aktiv"
+      },
+      {
+        "id": "481619e3-b24f-4293-8178-5d584e08cbfb",
+        "title": "Admin home",
+        "goal": "",
+        "status": "Aktiv"
+      }
+    ],
+    "topicRecords": [
+      {
+        "id": "60dcdda6-84ac-4c1c-825c-4306dd8d69c5",
+        "title": "Helmholtz",
+        "parent": "",
+        "nodePos": {
+          "x": 932.3616333007812,
+          "y": 347.9508056640625
+        },
+        "description": ""
+      },
+      {
+        "id": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "title": "Sport",
+        "parent": "",
+        "nodePos": {
+          "x": 26.263015747070312,
+          "y": 505.836669921875
+        },
+        "description": ""
+      },
+      {
+        "id": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "title": "FB Erde und Umwelt",
+        "parent": "",
+        "nodePos": {
+          "x": 25,
+          "y": 138.6092529296875
+        },
+        "description": ""
+      },
+      {
+        "id": "8c7caff9-6275-4dc1-a1aa-de3df3b52251",
+        "title": "Literatur und Publikationen ",
+        "parent": "",
+        "nodePos": {
+          "x": 229.73797607421875,
+          "y": 491.2939147949219
+        },
+        "description": "Überblick über die zahlreichen Bücher und Publikationen behalten"
+      },
+      {
+        "id": "501ad92f-e3b0-4e01-8ee5-3bf95f2dc1e3",
+        "title": "Inductive Bias",
+        "parent": "",
+        "nodePos": {
+          "x": 221.711669921875,
+          "y": 425.0263671875
+        },
+        "description": "**Inductive bias** (deutsch: *induktive Verzerrung* oder *induktiver Bias*) bezeichnet die grundlegenden Annahmen und Präferenzen, die ein KI- bzw. Machine-Learning-Modell mitbringt, bevor oder während es Daten sieht. Sie bestimmen, welche Muster das Modell aus endlich vielen Beispielen verallgemeinert – und damit, wie es auf neue, ungesehene Daten reagiert.[1][2]\n\n## Warum es nötig ist\n\nAus Trainingsdaten allein lässt sich nicht eindeutig ableiten, wie das Modell unbekannte Fälle behandeln soll: Viele Regeln könnten dieselben Trainingsbeispiele erklären. Der inductive bias ist daher die notwendige „Suchrichtung“, die eine plausible Lösung bevorzugt, etwa einfache, glatte oder lokal ähnliche Zusammenhänge. Ohne eine solche Annahme wäre belastbares Generalisieren praktisch unmöglich.[3][4]\n\nWichtig: Das ist **nicht** dasselbe wie sozialer Bias oder statistischer Bias. Es geht nicht primär um Vorurteile gegenüber Gruppen, sondern um eingebaute Lernannahmen.[5]\n\n## Beispiele\n\n| Modelltyp | Induktive Annahme | Folge |\n|---|---|---|\n| Lineare Regression | Zusammenhänge sind näherungsweise linear | Einfache, interpretierbare Trends |\n| k-Nearest Neighbors | Ähnliche Eingaben haben ähnliche Ausgaben | Klassifikation anhand naher Nachbarn |\n| CNN für Bilder | Nahe Pixel gehören oft zusammen; Muster sind lokal und verschiebbar | Gut für visuelle Merkmale wie Kanten und Texturen |\n| Transformer | Relevante Informationen können über Aufmerksamkeit global verknüpft werden | Flexibel für Sprache und Sequenzen, benötigt meist viel Daten |\n| Entscheidungsbaum | Regeln lassen sich als hierarchische Wenn-dann-Entscheidungen darstellen | Achsenparallele, stufige Entscheidungsgrenzen |\n\n## Praktische Bedeutung\n\nEin passender inductive bias kann die Datenmenge verringern und die Generalisierung verbessern: Ein CNN „weiß“ bereits strukturell etwas über Bilder, bevor es trainiert wird. Ein zu starker oder zur Aufgabe unpassender Bias kann jedoch relevante Muster ausschließen oder das Modell systematisch in die falsche Richtung lenken.[6][7]\n\nKurz gesagt: **Inductive bias ist das eingebaute Vorwissen bzw. die Lernpräferenz eines Modells** – die Brücke zwischen begrenzten Trainingsdaten und verlässlichen Vorhersagen für neue Daten.[2][8]\n\nQuellen\n[1] [PDF] Bias in der künstlichen Intelligenz - BSI https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/KI/Whitepaper_Bias_KI.pdf?__blob=publicationFile&v=5\n[2] Inductive Bias in Machine Learning https://publikationen.uni-tuebingen.de/xmlui/handle/10900/135988\n[3] Primers • Inductive Bias https://aman.ai/primers/inductive-bias/\n[4] en.wikipedia.org › wiki › Inductive_biasInductive bias - Wikipedia https://en.wikipedia.org/wiki/Inductive_bias\n[5] From Theory to Practice: Inductive Biases in Machine Learning https://mindfulmodeler.substack.com/p/from-theory-to-practice-inductive\n[6] Towards Exact Computation of Inductive Bias - IJCAI https://ijcai.org/proceedings/2024/0413.pdf\n[7] Induktive Verzerrung| Glossar zur KI-Governance https://www.enz.ai/de/glossary/inductive-bias\n[8] Primers • Inductive Bias - aman.ai https://aman.ai/primers/ai/inductive-bias/\n[9] www.bsi.bund.de · SharedDocs · DownloadsBias in der künstlichen Intelligenz - bsi.bund.de https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/KI/Whitepaper_Bias_KI.pdf?__blob=publicationFile&v=4\n[10] atmyre.github.io · blog · 2024Inductive bias in neural networks | Tatiana Gaintseva https://atmyre.github.io/blog/2024/ind_bias/\n"
+      },
+      {
+        "id": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "title": "AI",
+        "parent": "",
+        "nodePos": {
+          "x": 175.75405883789062,
+          "y": 541.0469360351562
+        },
+        "description": ""
+      }
+    ],
+    "relations": [
+      {
+        "id": "4a189874-0175-4e16-9cc4-4cdcce916cea",
+        "toId": "4a979a81-a026-4e77-922f-bdbeddf76468",
+        "label": "verknüpft mit",
+        "fromId": "18620c54-dfdb-4ae1-91df-f32a47017896",
+        "toType": "topicRecords",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "e9d2cb32-477f-4e08-9ac0-092fdd615824",
+        "toId": "1843b952-a4d5-47bf-bd36-a9135621e7ac",
+        "label": "verknüpft mit",
+        "fromId": "03cd98d6-c466-4e11-91f4-9b3845b7fe54",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "518aae59-17e8-4b6f-a7ed-c0ecfc9ff71b",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "7cf71037-c067-4944-b891-68b27a415ef6",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "f85e37e3-7ac3-491e-b928-863da7bec7e9",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "7fc3c3f3-9f9e-47ca-a9d6-742b9b6b2cbf",
+        "toId": "1843b952-a4d5-47bf-bd36-a9135621e7ac",
+        "label": "gehört zu",
+        "fromId": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "0848eab5-e471-4846-b8f5-964310962802",
+        "toId": "60dcdda6-84ac-4c1c-825c-4306dd8d69c5",
+        "label": "verknüpft mit",
+        "fromId": "81e1b099-9d7b-4c12-8d2e-4934c33471d5",
+        "toType": "topicRecords",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "10897e20-b299-40f5-a6b8-b8da0e9449ae",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "b2b5e622-077a-4824-adb9-13f6a70a4cae",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "0ed305a2-cd44-4b92-be94-37387a81792d",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "3810c176-dc74-4adc-b896-2f177a11335b",
+        "toId": "4a979a81-a026-4e77-922f-bdbeddf76468",
+        "label": "verknüpft mit",
+        "fromId": "03cd98d6-c466-4e11-91f4-9b3845b7fe54",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "2d006f9c-1aba-417c-beaa-b8ef6cfd9e66",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "c26fc590-585f-4cdc-aa78-41c1c65313a6",
+        "toId": "1b2836cc-0a2f-4aae-ac03-d75f5bd1bd90",
+        "label": "verknüpft mit",
+        "fromId": "f995407d-7f3f-48a1-86a4-5d52d171c22c",
+        "toType": "notes",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "7fc0d5a6-5610-41f5-8b09-c1e0aadb37de",
+        "toId": "6a6f9795-2a6a-4a06-af6d-92ee0ff61b98",
+        "label": "verknüpft mit",
+        "fromId": "f995407d-7f3f-48a1-86a4-5d52d171c22c",
+        "toType": "tasks",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "982f93ba-2ef2-4c6e-8c3d-9075deed5180",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "b2b5e622-077a-4824-adb9-13f6a70a4cae",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "d97a73f5-1793-4741-bd1c-e92ba344f63e",
+        "toId": "9448e7a4-d255-4a26-9373-7fdfd4169911",
+        "label": "verknüpft mit",
+        "fromId": "f995407d-7f3f-48a1-86a4-5d52d171c22c",
+        "toType": "tasks",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "4d91b334-182f-4892-b68a-6cb554b2debb",
+        "toId": "daa63d74-c2b1-4cba-8bfa-2aa67b809429",
+        "label": "verknüpft mit",
+        "fromId": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "51c9ece8-d0cb-4915-8eaa-4794955e006c",
+        "toId": "8f4e70c7-dc8a-43f9-ad1e-03331b38615e",
+        "label": "verknüpft mit",
+        "fromId": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "64f3ca71-603d-4871-bd1a-927fd713bf7f",
+        "toId": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "label": "verknüpft mit",
+        "fromId": "f995407d-7f3f-48a1-86a4-5d52d171c22c",
+        "toType": "topicRecords",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "96b1ee46-c20e-4d11-9540-76815675e869",
+        "toId": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "label": "verknüpft mit",
+        "fromId": "54e963a9-8724-405d-8bab-45d431d3175f",
+        "toType": "topicRecords",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "f0577477-9260-4067-a92c-e71d1f2d86d1",
+        "toId": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "label": "verknüpft mit",
+        "fromId": "2820341f-01c1-4a9c-bafd-298109536574",
+        "toType": "topicRecords",
+        "fromType": "projectRecords"
+      },
+      {
+        "id": "e75373d8-fc00-4b54-8179-2a5addf68f0d",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "be21f212-39b0-43fa-a2fa-57d7e6af342a",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "f9d0ea9f-e0fb-47b6-811e-98c29bf89955",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "d2188b86-ec98-4cf1-9f34-31d2fa880ae2",
+        "toId": "1843b952-a4d5-47bf-bd36-a9135621e7ac",
+        "label": "verknüpft mit",
+        "fromId": "18620c54-dfdb-4ae1-91df-f32a47017896",
+        "toType": "topicRecords",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "d84a582e-e394-4cc5-a719-d231d876ee42",
+        "toId": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "label": "verknüpft mit",
+        "fromId": "leisureholic@googlemail.com::lrocd6q1qlg2efsidr1tsephlk@group.calendar.google.com::_84p42h1m8gpk6ba3711kab9k6l136ba188pjib9p6d346e9j6h1j4d1m6s",
+        "toType": "topicRecords",
+        "fromType": "gcal"
+      },
+      {
+        "id": "b480f291-200d-44d9-bb8d-9ce08f175bb3",
+        "toId": "4a979a81-a026-4e77-922f-bdbeddf76468",
+        "label": "gehört zu",
+        "fromId": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "763d4753-b9cd-464f-bcfb-0b77c43aef4d",
+        "toId": "bb8c5142-ce24-4a40-ad6e-f5e8cb8afede",
+        "label": "verknüpft mit",
+        "fromId": "be7a33db-2e23-4e18-85e7-a9882f0877a8",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "9a6c34f9-3bf7-4942-848c-aed73d6105a2",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "2ac61191-bf58-47b0-9ff9-deccdfa8b4e1",
+        "toId": "18620c54-dfdb-4ae1-91df-f32a47017896",
+        "label": "angeheftet an",
+        "fromId": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "b3b54f9f-3437-4bf4-8475-9b62fd5fbd83",
+        "toId": "57ba734c-4ee7-402f-9c73-1074ef78f138",
+        "label": "verknüpft mit",
+        "fromId": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "8cf961f4-b467-4dbf-ad14-cfa310dd99ce",
+        "toId": "c9012ee2-f905-482e-b679-9fcbf84b6ed4",
+        "label": "verknüpft mit",
+        "fromId": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "d592cb91-5abf-410d-932e-841c5200ebd7",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "71012b20-d36e-4e07-93b2-c12a2871db51",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "fdb35e7c-2709-4795-842a-669f726d5af2",
+        "toId": "b684476b-d38a-424e-aa87-36206da31993",
+        "label": "verknüpft mit",
+        "fromId": "f4edfe4b-e42b-4812-a7f5-5d7b44b6cd6a",
+        "toType": "tasks",
+        "fromType": "topicRecords"
+      },
+      {
+        "id": "c12250eb-f866-4729-b6c8-aefa454314f1",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "b2b5e622-077a-4824-adb9-13f6a70a4cae",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "939c2112-3ce6-4a14-9426-22f5d7628301",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "b2b5e622-077a-4824-adb9-13f6a70a4cae",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      },
+      {
+        "id": "9b002c53-ce55-4d36-9bd7-298011c6e387",
+        "toId": "746d8ae1-502b-41e1-a889-b9da00d08cfc",
+        "label": "gehört zu",
+        "fromId": "93daf383-05be-439d-8849-a39692ceef91",
+        "toType": "topicRecords",
+        "fromType": "notes"
+      }
+    ],
+    "trash": [
+      {
+        "id": "37936cc1-b203-4420-a7ed-47dbd593fcb2",
+        "item": {
+          "id": "03cd98d6-c466-4e11-91f4-9b3845b7fe54",
+          "tags": "",
+          "title": "NotizTest",
+          "content": "fgh",
+          "created": "2026-10-26T16:03:17.764897+00:00",
+          "nodePos": null,
+          "category": "",
+          "connections": []
+        },
+        "kind": "notes",
+        "deletedAt": "2026-10-26T16:47:57.702Z",
+        "originalId": "03cd98d6-c466-4e11-91f4-9b3845b7fe54"
+      },
+      {
+        "id": "30e2dc49-a311-407a-a0ad-c383fae18e33",
+        "item": {
+          "id": "bc6a2bdf-cf5c-4727-8e8b-9ddb7cda1cad",
+          "due": "",
+          "done": false,
+          "notes": "",
+          "title": "Testaufgabe zum löschen",
+          "labels": "",
+          "repeat": "never",
+          "category": "FB EuU",
+          "subtasks": "",
+          "completed_at": null,
+          "repeat_weekly": false,
+          "subtasks_done": {}
+        },
+        "kind": "tasks",
+        "deletedAt": "2026-10-26T15:38:16.112Z",
+        "originalId": "bc6a2bdf-cf5c-4727-8e8b-9ddb7cda1cad"
+      },
+      {
+        "id": "d4947fd5-95b1-4848-abe6-3088d8355bbf",
+        "item": {
+          "id": "d4edc081-0daa-440e-a2fe-86a185c79baa",
+          "name": "Mönchspfeffee",
+          "checks": {
+            "2026-10-22": true
+          }
+        },
+        "kind": "habits",
+        "deletedAt": "2026-10-26T15:51:12.243Z",
+        "originalId": "d4edc081-0daa-440e-a2fe-86a185c79baa"
+      },
+      {
+        "id": "eb0334ad-bcd1-4240-ad3d-804b4a2c7ef4",
+        "item": {
+          "id": "18620c54-dfdb-4ae1-91df-f32a47017896",
+          "title": "Überthema1",
+          "parent": "",
+          "description": ""
+        },
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:47.584Z",
+        "originalId": "18620c54-dfdb-4ae1-91df-f32a47017896"
+      },
+      {
+        "id": "6bf58058-ce24-4fd8-9816-257df70b42d0",
+        "item": {
+          "id": "bae8d936-0266-4ac4-a68a-06807b0121db",
+          "name": "Vitamin D",
+          "checks": {
+            "2026-10-22": true
+          }
+        },
+        "kind": "habits",
+        "deletedAt": "2026-10-26T15:51:31.534Z",
+        "originalId": "bae8d936-0266-4ac4-a68a-06807b0121db"
+      },
+      {
+        "id": "42bef146-8abd-4c8e-89b6-07f1bf2b8de9",
+        "item": {
+          "id": "1843b952-a4d5-47bf-bd36-a9135621e7ac",
+          "title": "Unterthema2",
+          "parent": "Überthema1",
+          "description": ""
+        },
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:35.138Z",
+        "originalId": "1843b952-a4d5-47bf-bd36-a9135621e7ac"
+      },
+      {
+        "id": "1ce6c95e-2a88-4d6f-bdbe-6018ebf796d7",
+        "item": {
+          "id": "0ce0c05a-404d-41ee-a539-d60cb29039d6",
+          "due": "",
+          "done": false,
+          "notes": "",
+          "title": "Test3",
+          "labels": "",
+          "repeat": "never",
+          "category": "",
+          "subtasks": "",
+          "completed_at": null,
+          "repeat_weekly": false,
+          "subtasks_done": {},
+          "last_completed": ""
+        },
+        "kind": "tasks",
+        "deletedAt": "2026-10-26T15:35:52.353Z",
+        "originalId": "0ce0c05a-404d-41ee-a539-d60cb29039d6"
+      },
+      {
+        "id": "3f987866-6790-4e6e-8a04-085c90287a8f",
+        "item": {
+          "id": "4a979a81-a026-4e77-922f-bdbeddf76468",
+          "title": "Unterthema3",
+          "parent": "Überthema1",
+          "description": ""
+        },
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:40.353Z",
+        "originalId": "4a979a81-a026-4e77-922f-bdbeddf76468"
+      },
+      {
+        "id": "b4636f8d-d127-4d01-b756-c05e54baebfc",
+        "item": {
+          "id": "7c055e43-9c66-4cf9-95d5-59d35bcd24af",
+          "due": "",
+          "done": false,
+          "notes": "https://lmstudio.ai/",
+          "title": "Lokales Model /Ollama LM Studio",
+          "labels": "",
+          "repeat": "never",
+          "category": "",
+          "subtasks": "",
+          "completed_at": null,
+          "repeat_weekly": false,
+          "subtasks_done": {}
+        },
+        "kind": "tasks",
+        "deletedAt": "2026-10-28T11:14:43.393Z",
+        "originalId": "7c055e43-9c66-4cf9-95d5-59d35bcd24af"
+      },
+      {
+        "id": "b9b421da-73c5-49d6-bb4f-b9dbc7ebe360",
+        "item": {
+          "id": "9e9b11d3-db37-4bfa-8e7d-dd394cf7d7fe",
+          "due": "",
+          "done": false,
+          "notes": "",
+          "title": "testaufgabe zum löschen 3",
+          "labels": "",
+          "repeat": "never",
+          "category": "FB EuU",
+          "subtasks": "",
+          "completed_at": null,
+          "repeat_weekly": false,
+          "subtasks_done": {},
+          "last_completed": ""
+        },
+        "kind": "tasks",
+        "deletedAt": "2026-10-26T15:42:38.197Z",
+        "originalId": "9e9b11d3-db37-4bfa-8e7d-dd394cf7d7fe"
+      },
+      {
+        "id": "c0fb569f-7bd6-49e3-abf3-abace0f52a97",
+        "item": {
+          "id": "90f8fa27-3398-4b9b-9f4a-822551fcfce1",
+          "tags": "",
+          "title": "Nationale Plattform für Forschungssicherheit",
+          "content": "Die Plattform soll Forschungskooperationen weder genehmigen noch untersagen können. Stattdessen soll sie die Forschung bei der Risikoanalyse und -bewertung unterstützen und in einer Servicestelle freiwillig beraten. Im Lenkungsgremium der Plattform sollen Vertreter aus Bund, Ländern, der Allianz der Wissenschaftsorganisationen sowie Sicherheitsbehörden sitzen. Die Servicestelle soll vom Wissenschaftsrat umgesetzt und räumlich beim Bundesforschungsministerium angesiedelt sein. Voll funktionsfähig soll die Plattform im ersten Quartal 2027 sein.",
+          "created": "2026-10-22T06:14:55.931021+00:00",
+          "nodePos": {
+            "x": 154.35580444335938,
+            "y": 88.7662124633789
+          },
+          "category": "",
+          "connections": []
+        },
+        "kind": "notes",
+        "deletedAt": "2026-10-26T15:34:44.919Z",
+        "originalId": "90f8fa27-3398-4b9b-9f4a-822551fcfce1"
+      },
+      {
+        "id": "39c57ce1-e710-41c4-8122-ee0888a83506",
+        "item": {
+          "id": "d803f3d3-702e-4393-8ead-23927aab1229",
+          "due": "2026-10-26",
+          "done": false,
+          "notes": "",
+          "title": "Anmelden:",
+          "labels": "",
+          "repeat": "weekly",
+          "category": "",
+          "subtasks": "",
+          "completed_at": null,
+          "repeat_weekly": true,
+          "subtasks_done": {},
+          "last_completed": ""
+        },
+        "kind": "tasks",
+        "deletedAt": "2026-10-26T16:34:55.886Z",
+        "originalId": "d803f3d3-702e-4393-8ead-23927aab1229"
+      },
+      {
+        "id": "fbff5335-7a0f-4544-a8f2-503aaddc4e58",
+        "item": {
+          "id": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14",
+          "tags": "",
+          "title": "Neuer Eintrag4",
+          "content": "Inhalt",
+          "created": "2026-10-26T16:15:14.132164+00:00",
+          "nodePos": {
+            "x": 653.9703369140625,
+            "y": 230.36386108398438
+          },
+          "category": "",
+          "connections": []
+        },
+        "kind": "notes",
+        "deletedAt": "2026-10-26T16:24:21.170Z",
+        "originalId": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14"
+      }
+    ],
+    "deletedMarks": [
+      {
+        "kind": "notes",
+        "deletedAt": "2026-10-26T16:47:57.702Z",
+        "originalId": "03cd98d6-c466-4e11-91f4-9b3845b7fe54"
+      },
+      {
+        "kind": "tasks",
+        "deletedAt": "2026-10-26T16:34:55.886Z",
+        "originalId": "d803f3d3-702e-4393-8ead-23927aab1229"
+      },
+      {
+        "kind": "habits",
+        "deletedAt": "2026-10-26T15:51:12.243Z",
+        "originalId": "d4edc081-0daa-440e-a2fe-86a185c79baa"
+      },
+      {
+        "kind": "habits",
+        "deletedAt": "2026-10-26T15:51:31.534Z",
+        "originalId": "bae8d936-0266-4ac4-a68a-06807b0121db"
+      },
+      {
+        "kind": "notes",
+        "deletedAt": "2026-10-26T16:24:21.170Z",
+        "originalId": "30bde9a8-bfa4-4854-bd52-980d6d6d2f14"
+      },
+      {
+        "kind": "tasks",
+        "deletedAt": "2026-10-28T11:14:43.393Z",
+        "originalId": "7c055e43-9c66-4cf9-95d5-59d35bcd24af"
+      },
+      {
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:35.138Z",
+        "originalId": "1843b952-a4d5-47bf-bd36-a9135621e7ac"
+      },
+      {
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:40.353Z",
+        "originalId": "4a979a81-a026-4e77-922f-bdbeddf76468"
+      },
+      {
+        "kind": "topicRecords",
+        "deletedAt": "2026-10-26T16:24:47.584Z",
+        "originalId": "18620c54-dfdb-4ae1-91df-f32a47017896"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": "d1",
+        "title": "Beispiel: Forschungsworkflow",
+        "category": "Methoden",
+        "source": "flowchart LR\n A[Fragestellung] --> B[Daten]\n B --> C[Analyse]\n C --> D[Ergebnis]"
+      }
+    ]
+  }
+}
