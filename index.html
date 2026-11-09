@@ -186,7 +186,7 @@ body.locked #globalSearch {display:none;}
 }
 @media(prefers-reduced-motion:reduce) {*,*::before,*::after {transition:none!important;scroll-behavior:auto!important;}.metric:hover {transform:none;}}
 
-</style></head><body class="locked"><header><div><h1>◈ Knowledge Hub</h1><small>Meine persönliche Wissensdatenbank</small></div><div class="row"><input id="globalSearch" aria-label="Globale Suche" placeholder="⌕ Alles durchsuchen…" oninput="globalQuery=this.value;globalSearchChanged()" onkeydown="if(event.key==='Escape'){globalQuery='';go('dashboard')}" style="width:245px"><span id="cloudStatus" role="status" aria-live="polite">Nicht angemeldet</span><button class="secondary" id="syncNowButton" type="button" style="display:none" onclick="syncNow()">↻ Synchronisieren</button><button class="secondary" id="logoutButton" type="button" style="display:none">Abmelden</button></div></header><section id="cloudGate"><h2>Willkommen zurück.</h2><p class="muted">Melde dich mit deinem bestehenden Supabase-Benutzerkonto an. Neue Registrierungen sind hier nicht möglich.</p><form id="loginForm"><label>E-Mail-Adresse<input type="email" name="email" autocomplete="username" required></label><label>Passwort<input type="password" name="password" autocomplete="current-password" required></label><button class="primary">Anmelden</button><p id="loginError" role="alert" class="muted"></p></form></section><div class="layout"><nav id="nav" aria-label="Hauptnavigation"></nav><main id="main"></main></div><dialog id="khEditorDialog" class="kh-editor-dialog" aria-label="Eintrag erstellen oder bearbeiten"></dialog><script>
+</style></head><body class="locked"><header><div><h1>◈ Knowledge Hub</h1><small>Meine persönliche Wissensdatenbank · Sync-Schutz 1.0</small></div><div class="row"><input id="globalSearch" aria-label="Globale Suche" placeholder="⌕ Alles durchsuchen…" oninput="globalQuery=this.value;globalSearchChanged()" onkeydown="if(event.key==='Escape'){globalQuery='';go('dashboard')}" style="width:245px"><span id="cloudStatus" role="status" aria-live="polite">Nicht angemeldet</span><button class="secondary" id="syncNowButton" type="button" style="display:none" onclick="syncNow()">↻ Synchronisieren</button><button class="secondary" id="logoutButton" type="button" style="display:none">Abmelden</button></div></header><section id="cloudGate"><h2>Willkommen zurück.</h2><p class="muted">Melde dich mit deinem bestehenden Supabase-Benutzerkonto an. Neue Registrierungen sind hier nicht möglich.</p><form id="loginForm"><label>E-Mail-Adresse<input type="email" name="email" autocomplete="username" required></label><label>Passwort<input type="password" name="password" autocomplete="current-password" required></label><button class="primary">Anmelden</button><p id="loginError" role="alert" class="muted"></p></form></section><div class="layout"><nav id="nav" aria-label="Hauptnavigation"></nav><main id="main"></main></div><dialog id="khEditorDialog" class="kh-editor-dialog" aria-label="Eintrag erstellen oder bearbeiten"></dialog><script>
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -10561,40 +10561,186 @@ async function deleteCloudSketch(id){let user=await cloudRequest('/auth/v1/user'
 async function cloudLogin(email,password){let r=await fetch(CLOUD_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'apikey':CLOUD_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});let d=await r.json();if(!r.ok)throw Error(d.msg||d.error_description||d.message||'Anmeldung fehlgeschlagen');cloudSession=d;sessionStorage.setItem(CLOUD_TOKEN_KEY,JSON.stringify(d));await cloudLoad()}
 async function refreshCloudToken(){if(!cloudSession?.refresh_token)throw Error('Bitte erneut anmelden');let r=await fetch(CLOUD_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{'apikey':CLOUD_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:cloudSession.refresh_token})});let d=await r.json();if(!r.ok)throw Error('Sitzung abgelaufen. Bitte erneut anmelden.');cloudSession=d;sessionStorage.setItem(CLOUD_TOKEN_KEY,JSON.stringify(d))}
 async function ensureToken(){if(cloudSession?.expires_at && Date.now()/1000>cloudSession.expires_at-90)await refreshCloudToken()}
-async function cloudLoad(){const pending=localStorage.getItem(KEY+'-pending-sync');if(pending){let data;try{data=JSON.parse(pending).data}catch{}if(data){db=data;for(const k of Object.keys(initial))if(!Array.isArray(db[k]))db[k]=[];cloudLoaded=true;document.body.classList.remove('locked');document.getElementById('logoutButton').style.display='inline-block';document.getElementById('syncNowButton').style.display='inline-block';cloudDirty=true;statusText('⚠ Lokale Änderungen noch nicht synchronisiert · zuerst JSON-Backup erstellen');render();return}}statusText('Lade Cloud-Daten …');await ensureToken();let next=structuredClone(initial);for(const k of Object.keys(next))next[k]=[];for(const [kind,spec] of Object.entries(cloudSpecs)){const rows=await cloudRequest('/rest/v1/'+spec.table+'?select=*');next[kind]=rows.map(spec.from)}// Nicht synchronisierte Module bleiben lokal, werden nie als Cloud-Sicherung bezeichnet.
-// Hub 2.0: Projekte, Themen und Verknüpfungen werden jetzt geräteübergreifend synchronisiert.
- const hubKinds=['projectRecords','topicRecords','relations'];
- const hubRows=await cloudRequest('/rest/v1/kh_hub_entities_v2?select=kind,id,payload');
- const remoteMarks=hubRows.filter(r=>r.kind==='relations'&&r.payload?.__khDeleted===true).map(r=>r.payload.mark).filter(Boolean);next.deletedMarks=[...remoteMarks,...(db.deletedMarks||[]).filter(x=>!remoteMarks.some(y=>y.kind===x.kind&&y.originalId===x.originalId))];
- next.calendarArchives=await khReadCalendarArchives();next.icsSources=await khIcsLoadSources();next.appointments=await khLoadAppointments();
- const remoteChartAxes=hubRows.filter(r=>r.kind==='relations'&&r.payload?.__khChartAxis===true).map(r=>r.payload);
-  const remoteHabitMeta=hubRows.filter(r=>r.kind==='relations'&&r.payload?.__khHabitMeta===true).map(r=>r.payload);
- const remoteTrash=hubRows.filter(r=>r.kind==='relations'&&r.payload?.__khTrash===true).map(r=>r.payload.entry).filter(Boolean);
- next.trash=[...remoteTrash,...(db.trash||[]).filter(x=>!remoteTrash.some(y=>y.id===x.id))];
- for(const kind of hubKinds){const remote=hubRows.filter(r=>r.kind===kind&&r.payload?.__khAppointment!==true&&r.payload?.__khIcsSource!==true&&r.payload?.__khTrash!==true&&r.payload?.__khDeleted!==true&&r.payload?.__khHabitMeta!==true&&r.payload?.__khChartAxis!==true).map(r=>r.payload);next[kind]=remote.length?remote:(db[kind]||[])}
-  for(const meta of remoteHabitMeta){const h=next.habits.find(x=>x.id===meta.habitId);if(h){h.color=meta.color||h.color;h.order=meta.order}}next.habits.sort((a,b)=>(a.order??999999)-(b.order??999999));
- for(const entry of [...(next.trash||[]),...(next.deletedMarks||[])]){if(Array.isArray(next[entry.kind]))next[entry.kind]=next[entry.kind].filter(x=>x.id!==entry.originalId)}
- for(const meta of remoteChartAxes){const chart=next.chartTables.find(x=>x.id===meta.chartId);if(chart){chart.yMin=meta.yMin??null;chart.yMax=meta.yMax??null}}next.diagrams=db.diagrams||[];next.sketches=db.sketches||[];const cloudSketches=await loadCloudSketches();next.sketches=[...cloudSketches,...next.sketches.filter(x=>!cloudSketches.some(y=>y.id===x.id))];db=next;cloudLoaded=true;localStorage.setItem(KEY,JSON.stringify(db));document.body.classList.remove('locked');document.getElementById('logoutButton').style.display='inline-block';document.getElementById('syncNowButton').style.display='inline-block';statusText('Cloud geladen · keine lokalen Änderungen ausstehend');render();await loadAnnotations()}
-function syncNow(){if(!cloudLoaded)return;cloudDirty=true;statusText('Prüfe Supabase …');clearTimeout(cloudTimer);cloudSync()}function scheduleCloudSave(){cloudVersion++;cloudDirty=true;statusText(cloudLoaded?'Speichere in Supabase …':'Lokal gespeichert · Cloud ausstehend');if(!cloudLoaded)return;clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,700)}
-async function verifyCloudSync(){
- const checks=[...Object.entries(cloudSpecs).map(([kind,spec])=>({kind,table:spec.table,ids:(db[kind]||[]).map(x=>x.id)})),{kind:'hub',table:'kh_hub_entities_v2',ids:[...db.projectRecords,...db.topicRecords,...db.relations].map(x=>x.id).concat(khIcsSources().map(s=>'ics-source-'+s.id),khAppointments().map(a=>'appointment-'+a.id))}];
- for(const check of checks){if(!check.ids.length)continue;const rows=await cloudRequest('/rest/v1/'+check.table+'?select=id&limit=10000');const present=new Set((rows||[]).map(x=>x.id));const missing=check.ids.filter(id=>!present.has(id));if(missing.length)throw Error(check.kind+': '+missing.length+' Einträge nicht in Supabase bestätigt.')} }
-async function cloudSync(){if(cloudBusy||!cloudDirty||!cloudLoaded)return;cloudBusy=true;cloudDirty=false;const syncVersion=cloudVersion;try{await ensureToken();const user=await cloudRequest('/auth/v1/user');// Save linked entities without deleting other devices' data automatically.
- const hubKinds=['projectRecords','topicRecords','relations'];
- const hubRows=hubKinds.flatMap(kind=>(db[kind]||[]).map(x=>({id:x.id,kind,user_id:user.id,payload:x})));
- hubRows.push(...khAppointments().map(entry=>({id:'appointment-'+entry.id,kind:'relations',user_id:user.id,payload:{__khAppointment:true,entry:khAppointmentPayload(entry)}})));
- await khSyncCalendarArchives(user.id);
- await khIcsSync(user.id);
- // Papierkorb als markierte Datensaetze der erlaubten Kategorie 'relations' speichern.
- // Die Datenbank-Constraint erlaubt keinen neuen kind-Wert 'trash'.
- hubRows.push(...(db.deletedMarks||[]).map(x=>({id:'deleted-'+x.kind+'-'+x.originalId,kind:'relations',user_id:user.id,payload:{__khDeleted:true,mark:x}})));
- hubRows.push(...(db.chartTables||[]).map(x=>({id:'chartaxis-'+x.id,kind:'relations',user_id:user.id,payload:{__khChartAxis:true,chartId:x.id,yMin:x.yMin??null,yMax:x.yMax??null}})));
-  hubRows.push(...(db.habits||[]).map((x,i)=>({id:'habitmeta-'+x.id,kind:'relations',user_id:user.id,payload:{__khHabitMeta:true,habitId:x.id,color:habitColor(x),order:i}})));
- hubRows.push(...(db.trash||[]).map(x=>({id:x.id,kind:'relations',user_id:user.id,payload:{__khTrash:true,entry:x}})));
- if(hubRows.length)await cloudRequest('/rest/v1/kh_hub_entities_v2?on_conflict=user_id,kind,id',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(hubRows)});
-  await khCompleteAppointmentRestores();const savedTrashRows=await cloudRequest('/rest/v1/kh_hub_entities_v2?kind=eq.relations&select=id,payload');const currentTrash=new Set((db.trash||[]).map(x=>x.id));for(const t of savedTrashRows||[])if(t.payload?.__khTrash===true&&!currentTrash.has(t.id))await cloudRequest('/rest/v1/kh_hub_entities_v2?kind=eq.relations&id=eq.'+encodeURIComponent(t.id),{method:'DELETE'});
-  for(const entry of [...(db.trash||[]),...(db.deletedMarks||[])]){const spec=cloudSpecs[entry.kind];if(spec)await cloudRequest('/rest/v1/'+spec.table+'?id=eq.'+encodeURIComponent(entry.originalId),{method:'DELETE'});else if(entry.kind==='appointments')await cloudRequest('/rest/v1/kh_hub_entities_v2?kind=eq.relations&id=eq.'+encodeURIComponent('appointment-'+entry.originalId),{method:'DELETE'});else if(['projectRecords','topicRecords','relations'].includes(entry.kind))await cloudRequest('/rest/v1/kh_hub_entities_v2?kind=eq.'+encodeURIComponent(entry.kind)+'&id=eq.'+encodeURIComponent(entry.originalId),{method:'DELETE'})}
- for(const [kind,spec] of Object.entries(cloudSpecs)){let rows=db[kind].map(x=>({...spec.to(x),user_id:user.id}));let existing=await cloudRequest('/rest/v1/'+spec.table+'?select=id');let ids=new Set(rows.map(x=>x.id));let removed=existing.filter(x=>!ids.has(x.id)).map(x=>x.id);if(rows.length)await cloudRequest('/rest/v1/'+spec.table+'?on_conflict=id',{method:'POST',headers:{'Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(rows)});/* Sicherheit: kein automatisches Massenloeschen beim Synchronisieren. */}if(syncVersion===cloudVersion){await verifyCloudSync();localStorage.removeItem(KEY+'-pending-sync');statusText('✓ Supabase synchronisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}))}else{cloudDirty=true;statusText('Weitere Änderungen werden synchronisiert …')}}catch(e){cloudDirty=true;statusText('⚠ Cloud-Speicherung fehlgeschlagen');alert('Cloud-Speicherung fehlgeschlagen. Änderungen sind vorläufig nur lokal. Bitte JSON-Backup exportieren.\n'+e.message)}finally{cloudBusy=false;if(cloudDirty&&cloudLoaded){statusText('⚠ Noch nicht vollständig synchronisiert');clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,1800)}}}
+// Geräteübergreifender Abgleich, Version 1: nur geänderte Datensätze,
+// atomare Konfliktprüfung in Supabase, keine ungeschützten Gesamt-Upserts.
+let khSyncBase=null,khSyncRaw={},khSyncUser=null,khSyncBlocked=false,khSyncLoading=false;
+const khSyncStateKey=KEY+'-sync-base-v1';
+function khCanonical(value){
+ if(Array.isArray(value))return '['+value.map(khCanonical).join(',')+']';
+ if(value&&typeof value==='object')return '{'+Object.keys(value).filter(k=>value[k]!==undefined).sort().map(k=>JSON.stringify(k)+':'+khCanonical(value[k])).join(',')+'}';
+ return JSON.stringify(value);
+}
+const khSame=(a,b)=>khCanonical(a)===khCanonical(b);
+const khRowKey=(table,id,kind=null)=>JSON.stringify([table,kind,id]);
+function khCoreRows(data){
+ const out={};
+ const add=(table,value,kind=null)=>{const clean=JSON.parse(JSON.stringify(value));out[khRowKey(table,String(value.id),kind)]={table,id:String(value.id),kind,value:clean};};
+ for(const [kind,spec] of Object.entries(cloudSpecs))for(const x of data[kind]||[])add(spec.table,spec.to(x));
+ const hub=(id,kind,payload)=>add('kh_hub_entities_v2',{id,kind,payload},kind);
+ for(const kind of ['projectRecords','topicRecords','relations'])for(const x of data[kind]||[])hub(x.id,kind,x);
+ for(const entry of data.appointments||[]){const x=structuredClone(entry);delete x._restorePending;hub('appointment-'+x.id,'relations',{__khAppointment:true,entry:x});}
+ for(const x of data.deletedMarks||[])hub('deleted-'+x.kind+'-'+x.originalId,'relations',{__khDeleted:true,mark:x});
+ for(const x of data.trash||[])hub(x.id,'relations',{__khTrash:true,entry:x});
+ for(const x of data.chartTables||[])hub('chartaxis-'+x.id,'relations',{__khChartAxis:true,chartId:x.id,yMin:x.yMin??null,yMax:x.yMax??null});
+ for(const [i,x] of (data.habits||[]).entries())hub('habitmeta-'+x.id,'relations',{__khHabitMeta:true,habitId:x.id,color:habitColor(x),order:i});
+ return out;
+}
+function khChangeList(base,current,raw){
+ const ops=[];
+ for(const key of new Set([...Object.keys(base),...Object.keys(current)])){
+  if(khSame(base[key]?.value,current[key]?.value))continue;
+  const row=current[key]||base[key];
+  ops.push({table:row.table,id:row.id,kind:row.kind,expected:raw[key]||null,value:current[key]?.value||null});
+ }
+ return ops;
+}
+function khRememberSync(){
+ const state={version:1,user:khSyncUser,base:khSyncBase,raw:khSyncRaw};
+ // Pending data and their comparison baseline travel together across reloads.
+ localStorage.setItem(khSyncStateKey,JSON.stringify(state));
+ if(cloudDirty)localStorage.setItem(KEY+'-pending-sync',JSON.stringify({at:Date.now(),data:db,sync:state}));
+}
+async function khReadAll(table,user){
+ const rows=[];
+ for(let offset=0;;offset+=500){
+  const part=await cloudRequest('/rest/v1/'+table+'?select=*&user_id=eq.'+encodeURIComponent(user)+'&order=id.asc&limit=500&offset='+offset);
+  if(!Array.isArray(part))throw Error('Ungültige Cloud-Antwort: '+table);
+  rows.push(...part);if(part.length<500)return rows;
+ }
+}
+async function khFetchSnapshot(){
+ await ensureToken();const user=await cloudRequest('/auth/v1/user');
+ const tables=[...new Set(Object.values(cloudSpecs).map(s=>s.table)),'kh_hub_entities_v2'];
+ const pairs=await Promise.all(tables.map(async table=>[table,await khReadAll(table,user.id)]));
+ const tablesData=Object.fromEntries(pairs),raw={};
+ for(const [table,rows] of pairs)for(const row of rows)raw[khRowKey(table,String(row.id),table==='kh_hub_entities_v2'?row.kind:null)]=row;
+ const next=Object.fromEntries(Object.keys(initial).map(k=>[k,[]]));
+ for(const [kind,spec] of Object.entries(cloudSpecs))next[kind]=tablesData[spec.table].map(spec.from);
+ for(const row of tablesData.kh_hub_entities_v2){
+  const p=row.payload;if(!p)continue;
+  if(p.__khAppointment)next.appointments.push(p.entry);
+  else if(p.__khDeleted)next.deletedMarks.push(p.mark);
+  else if(p.__khTrash)next.trash.push(p.entry);
+  else if(p.__khIcsSource)next.icsSources.push(p.source);
+  else if(p.__khHabitMeta){const h=next.habits.find(x=>x.id===p.habitId);if(h){h.color=p.color;h.order=p.order;}}
+  else if(p.__khChartAxis){const t=next.chartTables.find(x=>x.id===p.chartId);if(t){t.yMin=p.yMin;t.yMax=p.yMax;}}
+  else if(['projectRecords','topicRecords','relations'].includes(row.kind))next[row.kind].push(p);
+ }
+ next.habits.sort((a,b)=>(a.order??999999)-(b.order??999999));
+ for(const m of [...next.deletedMarks,...next.trash])if(Array.isArray(next[m.kind]))next[m.kind]=next[m.kind].filter(x=>x.id!==m.originalId);
+ next.calendarArchives=await khReadCalendarArchives();
+ next.diagrams=structuredClone(db.diagrams||[]);
+ next.sketches=structuredClone(db.sketches||[]);
+ return {user:user.id,data:next,raw};
+}
+function khUnlock(){cloudLoaded=true;document.body.classList.remove('locked');document.getElementById('logoutButton').style.display='inline-block';document.getElementById('syncNowButton').style.display='inline-block';}
+function khApplySnapshot(s){
+ db=s.data;khSyncUser=s.user;khSyncRaw=s.raw;khSyncBase=khCoreRows(db);cloudDirty=false;khSyncBlocked=false;
+ localStorage.setItem(KEY,JSON.stringify(db));khRememberSync();localStorage.removeItem(KEY+'-pending-sync');khUnlock();render();
+ statusText('✓ Cloud-Stand aktuell · Konfliktschutz aktiv');
+}
+function khSyncNotice(message){
+ khSyncBlocked=true;clearTimeout(cloudTimer);statusText('⚠ Abgleich angehalten · lokale Änderungen erhalten');
+ let panel=document.getElementById('khSyncNotice');
+ if(!panel){panel=document.createElement('section');panel.id='khSyncNotice';panel.className='panel';panel.setAttribute('role','alert');panel.style.cssText='margin:16px 24px;border-color:var(--warning);';document.querySelector('header').after(panel);}
+ panel.innerHTML='<h3>Änderungen sicher aufbewahrt</h3><p>'+esc(message)+'</p><p>Deine lokale Fassung bleibt erhalten. Sichere sie als JSON, bevor du den aktuellen Cloud-Stand übernimmst. Danach kannst du deine Änderung im aktuellen Eintrag erneut vornehmen.</p><div class="row"><button class="primary" onclick="exportData()">Lokale Fassung herunterladen</button><button class="secondary" onclick="khRetrySync()">Erneut sicher abgleichen</button><button class="secondary" onclick="khUseCloudVersion()">Cloud-Stand übernehmen …</button></div>';
+}
+function khRetrySync(){
+ if(cloudBusy||khSyncLoading)return;
+ khSyncBlocked=false;cloudSync();
+}
+async function khUseCloudVersion(){
+ if(cloudBusy||khSyncLoading)return;
+ if(!confirm('Lokale Fassung bereits als JSON heruntergeladen? Der Cloud-Stand ersetzt jetzt die lokale Ansicht. Eine zusätzliche lokale Sicherung wird auf diesem Gerät aufbewahrt.'))return;
+ khSyncLoading=true;clearTimeout(cloudTimer);
+ try{
+  localStorage.setItem(KEY+'-recovery-'+Date.now(),JSON.stringify({version:2,exportedAt:new Date().toISOString(),data:db}));
+  const version=cloudVersion,s=await khFetchSnapshot();
+  if(version!==cloudVersion)throw Error('Während des Ladens wurde weiterbearbeitet. Bitte erneut versuchen.');
+  khApplySnapshot(s);document.getElementById('khSyncNotice')?.remove();
+ }catch(e){statusText('⚠ Cloud-Stand nicht übernommen');alert(e.message);}finally{khSyncLoading=false;}
+}
+async function cloudLoad(){
+ if(khSyncLoading)return;khSyncLoading=true;
+ try{
+  const pendingText=localStorage.getItem(KEY+'-pending-sync');let pending=null;
+  if(pendingText){try{pending=JSON.parse(pendingText);}catch{throw Error('Lokale Sicherung ist nicht lesbar. Bitte Browserdaten nicht löschen.');}}
+  const s=await khFetchSnapshot();
+  if(pending?.data){
+   db=pending.data;for(const k of Object.keys(initial))if(!Array.isArray(db[k]))db[k]=[];
+   khSyncUser=s.user;khSyncBase=null;khSyncRaw={};cloudDirty=true;khUnlock();render();
+   if(pending.sync?.version===1&&pending.sync.user===s.user&&pending.sync.base){
+    khSyncBase=pending.sync.base;khSyncRaw=pending.sync.raw||{};khSyncBlocked=false;
+    statusText('Lokale Änderungen werden mit der Cloud verglichen …');
+    cloudTimer=setTimeout(cloudSync,100);
+   }else khSyncNotice('Für diese älteren lokalen Änderungen fehlt ein verlässlicher Vergleichsstand. Sie werden deshalb nicht automatisch hochgeladen.');
+  }else{
+   const sketches=await loadCloudSketches();s.data.sketches=[...sketches,...s.data.sketches.filter(x=>!sketches.some(y=>y.id===x.id))];
+   khApplySnapshot(s);await loadAnnotations();
+  }
+ }finally{khSyncLoading=false;}
+}
+function syncNow(){
+ if(!cloudLoaded||cloudBusy||khSyncLoading)return;
+ if(khSyncBlocked){khSyncNotice('Bitte zuerst die lokale Fassung sichern und den Konflikt mit dem aktuellen Cloud-Stand klären.');return;}
+ clearTimeout(cloudTimer);if(cloudDirty)cloudSync();else khRefreshIfIdle(true);
+}
+function scheduleCloudSave(){
+ cloudVersion++;cloudDirty=true;
+ if(khSyncBase)khRememberSync();
+ statusText(khSyncBlocked?'⚠ Lokal gespeichert · Abgleich angehalten':'Lokal gespeichert · Änderungen werden abgeglichen …');
+ if(!cloudLoaded||khSyncBlocked)return;clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,700);
+}
+async function cloudSync(){
+ if(cloudBusy||khSyncLoading||!cloudDirty||!cloudLoaded||khSyncBlocked)return;
+ if(!khSyncBase){khSyncNotice('Ein sicherer Vergleichsstand fehlt. Automatisches Überschreiben wurde verhindert.');return;}
+ cloudBusy=true;const version=cloudVersion,sent=khCoreRows(db);
+ try{
+  await ensureToken();const user=await cloudRequest('/auth/v1/user');
+  if(user.id!==khSyncUser)throw Error('Das angemeldete Konto hat gewechselt. Bitte lokale Daten sichern und erneut anmelden.');
+  const ops=khChangeList(khSyncBase,sent,khSyncRaw);
+  if(ops.length){
+   const result=await cloudRequest('/rest/v1/rpc/kh_apply_changes_v1',{method:'POST',body:JSON.stringify({operations:ops})});
+   if(!Array.isArray(result)||result.length!==ops.length)throw Error('Die Speicherung wurde nicht vollständig bestätigt.');
+   for(const r of result){const key=khRowKey(r.table,r.id,r.kind);if(r.row)khSyncRaw[key]=r.row;else delete khSyncRaw[key];}
+  }
+  khSyncBase=sent;khRememberSync();
+  // Diese beiden Module besitzen bereits eigene Versionsprüfungen.
+  await khSyncCalendarArchives(user.id);await khIcsSync(user.id);
+  if(version===cloudVersion){cloudDirty=false;khRememberSync();localStorage.removeItem(KEY+'-pending-sync');document.getElementById('khSyncNotice')?.remove();statusText('✓ Supabase synchronisiert · Konfliktschutz aktiv');}
+  else {cloudDirty=true;khRememberSync();statusText('Weitere lokale Änderungen werden abgeglichen …');}
+ }catch(e){
+  cloudDirty=true;
+  if(/KH_CONFLICT/.test(e.message))khSyncNotice('Ein auf diesem Gerät bearbeiteter Eintrag wurde inzwischen auf einem anderen Gerät geändert oder gelöscht. Der betroffene Speichervorgang wurde zurückgerollt; der Cloud-Stand wurde nicht überschrieben.');
+  else if(/kh_apply_changes_v1|PGRST202/.test(e.message))khSyncNotice('Der Supabase-Konfliktschutz ist noch nicht eingerichtet oder nicht erreichbar. Bitte das mitgelieferte SQL-Skript im Supabase SQL Editor ausführen. Es erfolgt kein ungeschützter Ersatz-Upload.');
+  else khSyncNotice('Der Abgleich konnte nicht sicher abgeschlossen werden: '+e.message);
+  khRememberSync();
+ }finally{
+  cloudBusy=false;
+  if(cloudDirty&&!khSyncBlocked){clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,700);}
+  else if(!cloudDirty)khRefreshIfIdle();
+ }
+}
+function khCanRefresh(){
+ return !editId&&!document.querySelector('dialog[open]')&&!document.querySelector('#main form')&&!document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')&&!['maps','sketches','diagrams'].includes(page);
+}
+async function khRefreshIfIdle(manual=false){
+ if(!cloudLoaded||cloudBusy||khSyncLoading||cloudDirty||khSyncBlocked)return;
+ if(!khCanRefresh()){if(manual)statusText('Bitte die Bearbeitung schließen; anschließend wird der Cloud-Stand geladen.');return;}
+ khSyncLoading=true;const version=cloudVersion;
+ try{
+  const s=await khFetchSnapshot();
+  if(version!==cloudVersion||cloudDirty||!khCanRefresh())return;
+  if(s.user!==khSyncUser)throw Error('Konto gewechselt. Bitte erneut anmelden.');
+  khApplySnapshot(s);
+ }catch(e){statusText('⚠ Cloud gerade nicht erreichbar · lokaler Stand bleibt erhalten');}
+ finally{khSyncLoading=false;if(cloudDirty&&!khSyncBlocked){clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,700);}}
+}
+window.addEventListener('focus',()=>khRefreshIfIdle());
+window.addEventListener('online',()=>{if(cloudDirty&&!khSyncBlocked)cloudSync();else khRefreshIfIdle();});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')khRefreshIfIdle();});
+setInterval(()=>{if(document.visibilityState==='visible')khRefreshIfIdle();},60000);
+
 document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();let b=e.target.querySelector('button');b.disabled=true;document.getElementById('loginError').textContent='';try{let f=new FormData(e.target);await cloudLogin(f.get('email'),f.get('password'))}catch(err){document.getElementById('loginError').textContent=err.message;statusText('Nicht angemeldet')}finally{b.disabled=false}});
 document.getElementById('logoutButton').addEventListener('click',()=>{clearTimeout(cloudTimer);if(cloudDirty){alert('Noch nicht synchronisierte Änderungen. Bitte zuerst eine Sicherung exportieren.');return}cloudSession=null;cloudLoaded=false;sessionStorage.removeItem(CLOUD_TOKEN_KEY);document.body.classList.add('locked');document.getElementById('logoutButton').style.display='none';document.getElementById('syncNowButton').style.display='none';statusText('Abgemeldet')});
 (async()=>{try{let old=sessionStorage.getItem(CLOUD_TOKEN_KEY);if(old){cloudSession=JSON.parse(old);await cloudLoad()}}catch(e){cloudSession=null;sessionStorage.removeItem(CLOUD_TOKEN_KEY);statusText('Bitte anmelden')}})();
