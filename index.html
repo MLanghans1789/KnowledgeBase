@@ -10052,7 +10052,7 @@ function khCalendarArchivePanel(){const rows=(db.calendarArchives||[]).filter(a=
 async function khReadCalendarArchives(){let rows=[],offset=0;while(true){const batch=await cloudRequest('/rest/v1/kh_calendar_archives?select=event_id,archived,event_data,revision,changed_at&order=event_id.asc&limit=1000&offset='+offset);rows.push(...batch);if(batch.length<1000)break;offset+=1000;}return rows.map(r=>({eventId:r.event_id,archived:r.archived,event:r.event_data,revision:r.revision,changedAt:r.changed_at}));}
 async function khRefreshCalendarArchives(){const remote=await khReadCalendarArchives();const pending=(db.calendarArchives||[]).filter(a=>Object.hasOwn(a,'syncBase'));db.calendarArchives=[...remote.filter(r=>!pending.some(a=>a.eventId===r.eventId)),...pending];localStorage.setItem(KEY,JSON.stringify(db));return db.calendarArchives;}
 async function khReloadCalendarArchives(){try{if(!cloudSession)throw Error('Bitte zuerst anmelden.');if((db.calendarArchives||[]).some(a=>Object.hasOwn(a,'syncBase'))&&!confirm('Noch nicht synchronisierte Archiv-Änderungen verwerfen und den Cloud-Stand laden? Andere Hub-Daten bleiben erhalten.'))return;await ensureToken();db.calendarArchives=await khReadCalendarArchives();save();render();}catch(e){alert('Archiv nicht geladen: '+e.message);}}
-async function khSyncCalendarArchives(userId){for(const local of (db.calendarArchives||[]).filter(a=>Object.hasOwn(a,'syncBase'))){const a=structuredClone(local),base=a.syncBase;const path='/rest/v1/kh_calendar_archives',filter='?event_id=eq.'+encodeURIComponent(a.eventId)+'&user_id=eq.'+encodeURIComponent(userId);const current=await cloudRequest(path+filter+'&select=revision');const remote=current?.[0];if(remote?.revision!==a.revision){if((remote?.revision||null)!==base)throw Error('Der Archivstatus dieses Termins wurde auf einem anderen Gerät geändert. Unter „Erledigt / Archiviert“ den Cloud-Archivstand laden und die gewünschte Aktion erneut ausführen.');const row={user_id:userId,event_id:a.eventId,archived:a.archived,event_data:a.event,revision:a.revision,changed_at:a.changedAt};const result=remote?await cloudRequest(path+filter+'&revision=eq.'+encodeURIComponent(base),{method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify(row)}):await cloudRequest(path+'?on_conflict=user_id,event_id',{method:'POST',headers:{Prefer:'resolution=ignore-duplicates,return=representation'},body:JSON.stringify([row])});if(!result?.some(r=>r.revision===a.revision))throw Error('Archivstatus wurde gleichzeitig geändert. Bitte den Cloud-Archivstand laden.');}const latest=db.calendarArchives.find(x=>x.eventId===a.eventId);if(latest?.revision===a.revision)delete latest.syncBase;else if(latest?.syncBase===base)latest.syncBase=a.revision;localStorage.setItem(KEY,JSON.stringify(db));localStorage.setItem(KEY+'-pending-sync',JSON.stringify({at:Date.now(),data:db}));}}
+async function khSyncCalendarArchives(userId){for(const local of (db.calendarArchives||[]).filter(a=>Object.hasOwn(a,'syncBase'))){const a=structuredClone(local),base=a.syncBase;const path='/rest/v1/kh_calendar_archives',filter='?event_id=eq.'+encodeURIComponent(a.eventId)+'&user_id=eq.'+encodeURIComponent(userId);const current=await cloudRequest(path+filter+'&select=revision');const remote=current?.[0];if(remote?.revision!==a.revision){if((remote?.revision||null)!==base)throw Error('Der Archivstatus dieses Termins wurde auf einem anderen Gerät geändert. Unter „Erledigt / Archiviert“ den Cloud-Archivstand laden und die gewünschte Aktion erneut ausführen.');const row={user_id:userId,event_id:a.eventId,archived:a.archived,event_data:a.event,revision:a.revision,changed_at:a.changedAt};const result=remote?await cloudRequest(path+filter+'&revision=eq.'+encodeURIComponent(base),{method:'PATCH',headers:{Prefer:'return=representation'},body:JSON.stringify(row)}):await cloudRequest(path+'?on_conflict=user_id,event_id',{method:'POST',headers:{Prefer:'resolution=ignore-duplicates,return=representation'},body:JSON.stringify([row])});if(!result?.some(r=>r.revision===a.revision))throw Error('Archivstatus wurde gleichzeitig geändert. Bitte den Cloud-Archivstand laden.');}const latest=db.calendarArchives.find(x=>x.eventId===a.eventId);if(latest?.revision===a.revision)delete latest.syncBase;else if(latest?.syncBase===base)latest.syncBase=a.revision;localStorage.setItem(KEY,JSON.stringify(db));khRememberSync();}}
 
 function tasks(){const projects=[...new Set([...db.tasks,...khAppointments()].map(x=>x.category||'Ohne Projekt'))].sort((a,b)=>a.localeCompare(b,'de'));let items=filtered(db.tasks).filter(x=>taskProject==='all'||(x.category||'Ohne Projekt')===taskProject).filter(x=>taskView==='all'?!x.done:(taskView==='today'?!x.done&&x.due&&x.due<=today():taskView==='undated'?!x.done&&!x.due:taskView==='completed'?(!!x.done||!!x.last_completed):taskView==='calendar'? !x.done :taskView==='project'?!x.done:true));if(taskView==='completed')items.sort((a,b)=>(b.completed_at||b.last_completed||'').localeCompare(a.completed_at||a.last_completed||''));if(taskView==='project')items.sort((a,b)=>(a.category||'').localeCompare(b.category||'','de')||(a.due||'9999').localeCompare(b.due||'9999'));let tabs=[['all','Alle'],['today','Heute & überfällig'],['undated','Ohne Termin'],['calendar','Kalender'],['project','Nach Projekt'],['completed','Erledigt / Archiviert']];return title('Aufgaben & Kalender','Aufgaben, Termine und zugehörige Projekte.')+toolbar('Aufgabe')+`<div class="row" style="margin-top:10px"><button class="secondary" onclick="khNewAppointment()">+ Termin</button><button class="secondary" onclick="go('appointments')">Eigene Termine verwalten</button></div>`+`<div class="row"><button class="secondary" onclick="go('habits')">Gewohnheiten</button></div>`+labelEditor()+`<div class="row viewtabs">${tabs.map(([k,l])=>`<button class="secondary ${taskView===k?'selected':''}" onclick="taskView='${k}';render();if(khMirrorAccounts.length||cloudSession)gcalLoadEvents()">${l}</button>`).join('')}</div><div class="row" style="margin:14px 0"><label class="hint">Projekt / Thema <select style="width:auto;min-width:180px" onchange="taskProject=this.value;render()"><option value="all">Alle Projekte</option>${projects.map(x=>`<option value="${esc(x)}" ${taskProject===x?'selected':''}>${esc(x)}</option>`).join('')}</select></label></div>`+khProjectPicker()+(editId?formFor('tasks',[['title','Aufgabe','text',true],['category','Projekt / Thema'],['due','Erster Termin / nächste Fälligkeit','date'],['repeat','Wiederholen'],['labels','Labels (z. B. wichtig, in Bearbeitung, Entwurf)'],['subtasks','Unteraufgaben (eine pro Zeile)','textarea'],['notes','Notizen (nur in Detailansicht sichtbar)','textarea']]):'')+(taskView==='calendar'?taskCalendar(items):`<div class="panel">${items.map(x=>`<div class="item" style="${topicStyle(x.category)}"><div class="row"><input aria-label="${esc(x.title)} erledigen" style="width:23px;height:23px;flex:0 0 23px;accent-color:${topicColor(x.category)}" type="checkbox" ${x.done?'checked':''} onchange="toggleTask('${x.id}')"><button class="secondary" style="flex:1;text-align:left" onclick="openTask('${x.id}')"><strong style="${x.done?'text-decoration:line-through;opacity:.5':''}">${esc(x.title)}</strong><div class="hint">${esc(x.category||'Ohne Projekt')} ${x.due?'· '+esc(x.due):'· ohne Termin'} ${(x.completed_at||x.last_completed)?'· Zuletzt erledigt: '+esc((x.completed_at||x.last_completed).slice(0,10)):''}</div><div>${labelBadges(x.labels)}</div></button></div>${taskOpen===x.id?`<div class="taskdetail"><h4>Unteraufgaben</h4>${(x.subtasks||'').split('\n').filter(Boolean).map((v,i)=>`<label class="subtask"><input type="checkbox" ${((x.subtasks_done||{})[i])?'checked':''} onchange="toggleSubtask('${x.id}',${i},this.checked)"> <span>${esc(v)}</span></label>`).join('')||'<p class="hint">Keine Unteraufgaben</p>'}<h4>Notizen</h4><div class="kh-rich-display">${khNoteDisplay(x.notes||'Keine Notizen')}</div>${relationEditor('tasks',x.id)}${actions('tasks',x.id)}</div>`:''}</div>`).join('')||empty()}</div>`)+(taskView==='completed'?khCalendarArchivePanel():'')}
 const GCAL_KEY='kh-google-calendar-v1';let gcalConfig=(()=>{try{return JSON.parse(localStorage.getItem(GCAL_KEY))||{}}catch{return {}}})();if(!gcalConfig.selected)gcalConfig.selected={};if(!gcalConfig.colors)gcalConfig.colors={};let gcalToken=null,gcalCalendars=[],gcalEvents=[],gcalLoading=false,gcalError='',gcalDetail=null,gcalRequestId=0;
@@ -10455,7 +10455,7 @@ async function khIcsSync(userId){
   if(latest?.revision===source.revision)delete latest.syncBase;
   else if(latest?.syncBase===baseRevision)latest.syncBase=source.revision;
   // Preserve acknowledgement across a reload even if a later module's save fails.
-  localStorage.setItem(KEY,JSON.stringify(db));localStorage.setItem(KEY+'-pending-sync',JSON.stringify({at:Date.now(),data:db}));
+  localStorage.setItem(KEY,JSON.stringify(db));khRememberSync();
  }
 }
 function khIcsControls(){return `<div class="gcal-panel"><h3>Outlook-Dateiimport (ICS)</h3><p class="hint">Manuelle Kalenderkopie. Änderungen und Löschungen werden erst beim nächsten Import übernommen. Outlook wird nicht verändert. Labels und Notizen bleiben separat erhalten.</p>${khIcsSources().map(s=>`<label class="gcal-chip"><input type="checkbox" ${s.visible!==false?'checked':''} onchange="khIcsToggle('${s.id}',this.checked)">${esc(s.name)} · ${(s.events||[]).filter(e=>!e._icsHidden).length} Termine · ${esc(s.lastImport?new Date(s.lastImport).toLocaleString('de-DE'):'')}</label><button type="button" class="secondary" onclick="khIcsReloadSource('${s.id}')">Cloud-Stand dieser Quelle laden</button>`).join('')}<form class="form" onsubmit="khIcsPreview(event)"><label>Importquelle<select name="source" required onchange="khIcsInvalidate()"><option value="new">Neuen Outlook-Kalender anlegen</option>${khIcsSources().map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></label><label>Name für eine neue Quelle<input name="name" placeholder="AWI · Hauptkalender" oninput="khIcsInvalidate()"></label><label>ICS-Datei<input name="file" type="file" accept=".ics,text/calendar" required onchange="khIcsInvalidate()"></label><div class="split"><label>Vollständig enthaltener Zeitraum: von<input name="from" type="date" required onchange="khIcsInvalidate()"></label><label>Bis einschließlich<input name="through" type="date" required onchange="khIcsInvalidate()"></label></div><label>Zeitzone des Importumfangs und für Termine ohne Zeitzone<input name="zone" value="Europe/Berlin" required oninput="khIcsInvalidate()"></label><label class="kh-toggle"><input name="full" type="checkbox" onchange="khIcsInvalidate()"> Vollständiger Export des gewählten Kalenders für diesen Zeitraum: fehlende Termine ausblenden.</label><p class="hint">Ohne Häkchen werden nur neue/geänderte Termine übernommen. Einzeltermine und gefilterte Exporte sind kein vollständiger Bestand. Kalenderidentität und Exportgrenzen lassen sich aus ICS nicht zuverlässig ableiten: Wähle stets dieselbe Quelle und bestätige nur den tatsächlich vollständig enthaltenen Zeitraum. Andere Quellen und Termine außerhalb dieses Zeitraums bleiben erhalten.</p><button class="secondary" ${khIcsBusy?'disabled':''}>${khIcsBusy?'Prüfe …':'Import prüfen'}</button></form><div id="khIcsPreview" aria-live="polite">${khIcsPreviewHtml()}</div><details><summary>Exportmöglichkeiten und Grenzen</summary><p class="hint">Outlook für Mac: Archivexport (.olm) ist kein ICS-Kalenderexport. Einzelne ICS-Anhänge reichen nicht zum vollständigen Abgleich. OWA: ein ICS-Download über Kalenderveröffentlichung hängt von den Organisationsrechten ab und macht den Kalender per Link zugänglich. „Nur Verfügbarkeit“ enthält keine vollständigen Details. Veröffentlichte Zeiträume können begrenzt sein. Apple Kalender kann einen eingerichteten und vollständig synchronisierten Exchange-Kalender als ICS exportieren, sofern das Konto dies erlaubt.</p><p class="hint">Benannte Zeitzonen benötigen VTIMEZONE-Definitionen im Export (UTC funktioniert ohne diese). Unbekannte/mehrdeutige Formate, Besprechungsnachrichten, Bereichsabsagen und zu aufwendige Serien werden ohne Änderungen abgewiesen. Maximal 8 MB, 15.000 Vorkommen und drei Jahre pro Import. Ein Export ohne stabile UIDs ist nicht für diesen Abgleich geeignet.</p><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/outlook/export-items-to-an-archive-file-in-outlook-for-mac">Outlook Mac: Archivexport</a> · <a target="_blank" rel="noopener" href="https://support.microsoft.com/en-gb/outlook/share-your-calendar-in-outlook-on-the-web">OWA: Kalender veröffentlichen</a></details></div>`;}
@@ -10570,6 +10570,7 @@ async function ensureToken(){if(cloudSession?.expires_at && Date.now()/1000>clou
 // Geräteübergreifender Abgleich, Version 1: nur geänderte Datensätze,
 // atomare Konfliktprüfung in Supabase, keine ungeschützten Gesamt-Upserts.
 let khSyncBase=null,khSyncRaw={},khSyncUser=null,khSyncBlocked=false,khSyncLoading=false;
+let khSyncBlockMessage="",khSyncConflicts=[];
 const khSyncStateKey=KEY+'-sync-base-v1';
 function khCanonical(value){
  if(Array.isArray(value))return '['+value.map(khCanonical).join(',')+']';
@@ -10601,7 +10602,7 @@ function khChangeList(base,current,raw){
  return ops;
 }
 function khRememberSync(){
- const state={version:1,user:khSyncUser,base:khSyncBase,raw:khSyncRaw};
+ const state={version:1,user:khSyncUser,base:khSyncBase,raw:khSyncRaw,blocked:khSyncBlocked,blockMessage:khSyncBlockMessage,conflicts:khSyncConflicts};
  // Pending data and their comparison baseline travel together across reloads.
  localStorage.setItem(khSyncStateKey,JSON.stringify(state));
  if(cloudDirty)localStorage.setItem(KEY+'-pending-sync',JSON.stringify({at:Date.now(),data:db,sync:state}));
@@ -10639,21 +10640,46 @@ async function khFetchSnapshot(){
  next.sketches=structuredClone(db.sketches||[]);
  return {user:user.id,data:next,raw};
 }
+function khConflictDetails(){
+ if(!khSyncConflicts.length)return '';
+ return '<details><summary>Betroffene Einträge ('+khSyncConflicts.length+')</summary><ul>'+khSyncConflicts.map(x=>'<li>'+esc(x.title)+' · '+esc(x.table)+' · ID: '+esc(x.id)+'</li>').join('')+'</ul></details>';
+}
+function khReconcilePending(snapshot,current){
+ const remote=khCoreRows(snapshot.data),base=structuredClone(khSyncBase),raw=structuredClone(khSyncRaw),conflicts=[];
+ for(const op of khChangeList(base,current,raw)){
+  const key=khRowKey(op.table,op.id,op.kind),r=remote[key],local=current[key],before=base[key];
+  if(khSame(local?.value,r?.value)&&(local||!snapshot.raw[key])){
+   // A lost response must not turn a completed write into a new conflict.
+   if(local)base[key]=structuredClone(local);else delete base[key];
+   if(snapshot.raw[key])raw[key]=snapshot.raw[key];else delete raw[key];
+  }else if(khSame(before?.value,r?.value)&&(!before||snapshot.raw[key])){
+   // Only metadata changed remotely; writable fields still match our baseline.
+   if(snapshot.raw[key])raw[key]=snapshot.raw[key];else delete raw[key];
+  }else{
+   const v=local?.value||before?.value||{};
+   conflicts.push({table:op.table,id:op.id,kind:op.kind,title:v.title||v.name||v.front||v.payload?.entry?.title||v.payload?.title||op.id});
+  }
+ }
+ // An unresolved conflict must keep the original expected versions intact.
+ if(conflicts.length){khSyncConflicts=conflicts;return false;}
+ khSyncBase=base;khSyncRaw=raw;khSyncConflicts=[];return true;
+}
 function khUnlock(){cloudLoaded=true;document.body.classList.remove('locked');document.getElementById('logoutButton').style.display='inline-block';document.getElementById('syncNowButton').style.display='inline-block';}
 function khApplySnapshot(s){
- db=s.data;khSyncUser=s.user;khSyncRaw=s.raw;khSyncBase=khCoreRows(db);cloudDirty=false;khSyncBlocked=false;
+ db=s.data;khSyncUser=s.user;khSyncRaw=s.raw;khSyncBase=khCoreRows(db);cloudDirty=false;khSyncBlocked=false;khSyncBlockMessage="";khSyncConflicts=[];
  localStorage.setItem(KEY,JSON.stringify(db));khRememberSync();localStorage.removeItem(KEY+'-pending-sync');khUnlock();render();
  statusText('✓ Cloud-Stand aktuell · Konfliktschutz aktiv');
 }
-function khSyncNotice(message){
- khSyncBlocked=true;clearTimeout(cloudTimer);statusText('⚠ Abgleich angehalten · lokale Änderungen erhalten');
+function khSyncNotice(message,restored=false){
+ khSyncBlocked=true;khSyncBlockMessage=message;clearTimeout(cloudTimer);statusText('⚠ Abgleich angehalten · lokale Änderungen erhalten');
  let panel=document.getElementById('khSyncNotice');
- if(!panel){panel=document.createElement('section');panel.id='khSyncNotice';panel.className='panel';panel.setAttribute('role','alert');panel.style.cssText='margin:16px 24px;border-color:var(--warning);';document.querySelector('header').after(panel);}
- panel.innerHTML='<h3>Änderungen sicher aufbewahrt</h3><p>'+esc(message)+'</p><p>Deine lokale Fassung bleibt erhalten. Sichere sie als JSON, bevor du den aktuellen Cloud-Stand übernimmst. Danach kannst du deine Änderung im aktuellen Eintrag erneut vornehmen.</p><div class="row"><button class="primary" onclick="exportData()">Lokale Fassung herunterladen</button><button class="secondary" onclick="khRetrySync()">Erneut sicher abgleichen</button><button class="secondary" onclick="khUseCloudVersion()">Cloud-Stand übernehmen …</button></div>';
+ if(!panel){panel=document.createElement('section');panel.id='khSyncNotice';panel.className='panel';panel.setAttribute('role','status');panel.style.cssText='margin:16px 24px;border-color:var(--warning);';document.querySelector('header').after(panel);}
+ panel.innerHTML='<h3>'+(restored?'Offener Abgleich vom letzten Besuch':'Änderungen sicher aufbewahrt')+'</h3><p>'+(restored?'Der gespeicherte Abgleichstopp bleibt aktiv. Es wurde kein erneuter Upload versucht. ':'')+esc(message)+'</p>'+khConflictDetails()+'<p>Deine lokale Fassung bleibt erhalten. Sichere sie als JSON, bevor du den aktuellen Cloud-Stand übernimmst. Danach kannst du deine Änderung im aktuellen Eintrag erneut vornehmen.</p><div class="row"><button class="primary" onclick="exportData()">Lokale Fassung herunterladen</button><button class="secondary" onclick="khRetrySync()">Erneut sicher abgleichen</button><button class="secondary" onclick="khUseCloudVersion()">Cloud-Stand übernehmen …</button></div>';
+ khRememberSync();
 }
 function khRetrySync(){
  if(cloudBusy||khSyncLoading)return;
- khSyncBlocked=false;cloudSync();
+ khSyncBlocked=false;khSyncBlockMessage="";khSyncConflicts=[];cloudDirty=true;khRememberSync();cloudSync();
 }
 async function khUseCloudVersion(){
  if(cloudBusy||khSyncLoading)return;
@@ -10676,7 +10702,9 @@ async function cloudLoad(){
    db=pending.data;for(const k of Object.keys(initial))if(!Array.isArray(db[k]))db[k]=[];
    khSyncUser=s.user;khSyncBase=null;khSyncRaw={};cloudDirty=true;khUnlock();render();
    if(pending.sync?.version===1&&pending.sync.user===s.user&&pending.sync.base){
-    khSyncBase=pending.sync.base;khSyncRaw=pending.sync.raw||{};khSyncBlocked=false;
+    khSyncBase=pending.sync.base;khSyncRaw=pending.sync.raw||{};khSyncBlocked=!!pending.sync.blocked;
+    khSyncConflicts=pending.sync.conflicts||[];
+    if(khSyncBlocked){khSyncNotice(pending.sync.blockMessage||'Ein früherer Abgleich wurde angehalten. Lokale Daten bleiben unverändert erhalten.',true);return;}
     statusText('Lokale Änderungen werden mit der Cloud verglichen …');
     cloudTimer=setTimeout(cloudSync,100);
    }else khSyncNotice('Für diese älteren lokalen Änderungen fehlt ein verlässlicher Vergleichsstand. Sie werden deshalb nicht automatisch hochgeladen.');
@@ -10693,31 +10721,36 @@ function syncNow(){
 }
 function scheduleCloudSave(){
  cloudVersion++;cloudDirty=true;
- if(khSyncBase)khRememberSync();
+ khRememberSync();
  statusText(khSyncBlocked?'⚠ Lokal gespeichert · Abgleich angehalten':'Lokal gespeichert · Änderungen werden abgeglichen …');
  if(!cloudLoaded||khSyncBlocked)return;clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,700);
 }
 async function cloudSync(){
  if(cloudBusy||khSyncLoading||!cloudDirty||!cloudLoaded||khSyncBlocked)return;
  if(!khSyncBase){khSyncNotice('Ein sicherer Vergleichsstand fehlt. Automatisches Überschreiben wurde verhindert.');return;}
- cloudBusy=true;const version=cloudVersion,sent=khCoreRows(db);
+ cloudBusy=true;let version,sent;
  try{
   await ensureToken();const user=await cloudRequest('/auth/v1/user');
   if(user.id!==khSyncUser)throw Error('Das angemeldete Konto hat gewechselt. Bitte lokale Daten sichern und erneut anmelden.');
+  const snapshot=await khFetchSnapshot();
+  if(snapshot.user!==khSyncUser)throw Error('Das angemeldete Konto hat gewechselt.');
+  version=cloudVersion;sent=khCoreRows(db);
+  if(!khReconcilePending(snapshot,sent)){khSyncNotice('Lokale und Cloud-Fassung unterscheiden sich bei denselben Einträgen. Es wurde nichts hochgeladen. Bitte die lokale Fassung sichern und die betroffenen Einträge klären.');return;}
+  khRememberSync();
   const ops=khChangeList(khSyncBase,sent,khSyncRaw);
   if(ops.length){
    const result=await cloudRequest('/rest/v1/rpc/kh_apply_changes_v1',{method:'POST',body:JSON.stringify({operations:ops})});
-   if(!Array.isArray(result)||result.length!==ops.length)throw Error('Die Speicherung wurde nicht vollständig bestätigt.');
+   if(!Array.isArray(result)||result.length!==ops.length||new Set(result.map(r=>khRowKey(r.table,String(r.id),r.kind??null))).size!==ops.length||ops.some(op=>!result.some(r=>khRowKey(r.table,String(r.id),r.kind??null)===khRowKey(op.table,op.id,op.kind)&&((op.value===null&&r.row===null)||(op.value!==null&&r.row&&String(r.row.id)===op.id)))))throw Error('Die Speicherung wurde nicht vollständig bestätigt.');
    for(const r of result){const key=khRowKey(r.table,r.id,r.kind);if(r.row)khSyncRaw[key]=r.row;else delete khSyncRaw[key];}
   }
   khSyncBase=sent;khRememberSync();
   // Diese beiden Module besitzen bereits eigene Versionsprüfungen.
   await khSyncCalendarArchives(user.id);await khIcsSync(user.id);
-  if(version===cloudVersion){cloudDirty=false;khRememberSync();localStorage.removeItem(KEY+'-pending-sync');document.getElementById('khSyncNotice')?.remove();statusText('✓ Supabase synchronisiert · Konfliktschutz aktiv');}
+  if(version===cloudVersion){cloudDirty=false;khSyncBlockMessage='';khSyncConflicts=[];khRememberSync();localStorage.removeItem(KEY+'-pending-sync');document.getElementById('khSyncNotice')?.remove();statusText('✓ Supabase synchronisiert · Konfliktschutz aktiv');}
   else {cloudDirty=true;khRememberSync();statusText('Weitere lokale Änderungen werden abgeglichen …');}
  }catch(e){
   cloudDirty=true;
-  if(/KH_CONFLICT/.test(e.message))khSyncNotice('Ein auf diesem Gerät bearbeiteter Eintrag wurde inzwischen auf einem anderen Gerät geändert oder gelöscht. Der betroffene Speichervorgang wurde zurückgerollt; der Cloud-Stand wurde nicht überschrieben.');
+  if(/KH_CONFLICT/.test(e.message))khSyncNotice('Ein auf diesem Gerät bearbeiteter Eintrag wurde inzwischen auf einem anderen Gerät geändert oder gelöscht. Der Server hat den betroffenen Speichervorgang wegen eines Versionskonflikts abgelehnt. Bereits bestätigte frühere Speichervorgänge bleiben erhalten.');
   else if(/kh_apply_changes_v1|PGRST202/.test(e.message))khSyncNotice('Der Supabase-Konfliktschutz ist noch nicht eingerichtet oder nicht erreichbar. Bitte das mitgelieferte SQL-Skript im Supabase SQL Editor ausführen. Es erfolgt kein ungeschützter Ersatz-Upload.');
   else khSyncNotice('Der Abgleich konnte nicht sicher abgeschlossen werden: '+e.message);
   khRememberSync();
