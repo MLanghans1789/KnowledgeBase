@@ -194,54 +194,58 @@ body.locked #globalSearch {display:none;}
 
 </style><style>
 .kh-weather-head{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.kh-weather-head h3{font-size:24px;margin:0}.kh-weather-head button{margin-left:auto}.kh-weather-head button:disabled{opacity:.65;cursor:wait}.kh-weather-values{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:22px;margin:24px 0}.kh-weather-values strong{display:block;font-size:36px;line-height:1.2;margin-bottom:5px}.kh-weather-values span{color:var(--muted);font-size:16px}.kh-weather-low{color:#74b9ff}.kh-weather-high{color:#ff807b}.kh-weather-chart h4{font-size:18px;margin:24px 0 8px}.kh-weather-chart p{margin:8px 0 20px}.kh-weather-scroll{overflow-x:auto}.kh-weather-chart svg{display:block;width:100%;min-width:480px;height:auto;color:#dce6f1}.kh-weather-chart text{fill:currentColor;font-size:14px;font-family:inherit}.kh-weather-source,.kh-weather-stamp{font-size:14px;line-height:1.5}.kh-weather-source{margin-bottom:0}.kh-weather-error{color:#ffb4b4}@media(max-width:680px){.kh-weather-values{grid-template-columns:1fr 1fr;gap:20px 12px}.kh-weather-values>div:last-child{grid-column:1/-1}.kh-weather-values strong{font-size:30px}.kh-weather-head h3{font-size:22px}.kh-weather-head button{margin-left:0}}
-</style><style id="kh-yellow-blue-theme">
-/* Midnight / Electric Yellow / Cobalt — 22.11.2026 */
-:root{color-scheme:dark;--bg:#080b14;--header-bg:#0b0f1b;--nav-bg:#0b0f1b;--panel:#111827;--surface-inset:#090f1d;--surface-raised:#1a2540;--text:#f4f7ff;--muted:#aebbd4;--border:#2a3855;--accent:#f4ff00;--accent-hover:#fcff70;--accent-ink:#101400;--accent-soft:#252c0b;--link:#83b7ff;--blue:#245bff;--danger:#ffb6c2;--danger-bg:#351822;--danger-border:#763044;--warning:#f4ff00;--warning-bg:#292c10;--radius:12px;--radius-small:7px;--radius-large:18px;--shadow:0 10px 30px #0003;--dialog-shadow:0 28px 90px #0009}
-body{font-size:16px;background:radial-gradient(ellipse at 100% 0%,#12308040,transparent 48%),var(--bg)}
+</style><style id="kh-pink-navy-gray-theme">
+/* Charcoal / Pink / Midnight Blue — 22.11.2026 */
+:root{color-scheme:dark;--bg:#101116;--header-bg:#14151c;--nav-bg:#14151c;--panel:#1c1e27;--surface-inset:#13151d;--surface-raised:#272b39;--text:#f2eff4;--muted:#b3b1bd;--border:#3a3d4b;--accent:#ff5ca8;--accent-hover:#ff8fc3;--accent-ink:#210d19;--accent-soft:#382235;--link:#e6a4c9;--blue:#253e70;--danger:#ffb6b0;--danger-bg:#392125;--danger-border:#754149;--warning:#ff5ca8;--warning-bg:#37303b;--radius:12px;--radius-small:7px;--radius-large:18px;--shadow:0 10px 30px #0003;--dialog-shadow:0 28px 90px #0009}
+body{font-size:16px;background:radial-gradient(ellipse at 100% 0%,#24385d40,transparent 48%),var(--bg)}
 body>header{border-bottom:2px solid var(--blue);background:var(--header-bg)}
 header h1{font-size:23px;font-weight:800;letter-spacing:-.8px;color:var(--accent)}
 header small{font-size:13px;color:var(--muted)}
-#cloudStatus{font-size:13px}#globalSearch{border-color:#344365}
-#nav{background:var(--nav-bg)}#nav::before{color:#85a7ff;font-size:11px;letter-spacing:1.6px}
-#nav button{font-size:14px;color:#b9c6df;border-radius:7px}
-#nav button:hover{background:#182957;color:white}
-#nav button.active{background:var(--blue);border-color:#4776ff;color:white;box-shadow:0 6px 22px #245bff35}
+#cloudStatus{font-size:13px}#globalSearch{border-color:#414552}
+#nav{background:var(--nav-bg)}#nav::before{color:#b5b8c7;font-size:11px;letter-spacing:1.6px}
+#nav button{font-size:14px;color:#bcbac5;border-radius:7px}
+#nav button:hover{background:#242b41;color:white}
+#nav button.active{background:var(--blue);border-color:#526384;color:white;box-shadow:0 6px 22px #253e7035}
 #nav button.active::after{display:none}
 #nav button.active::before{content:"";position:absolute;left:-1px;top:10px;bottom:10px;width:4px;background:var(--accent);border-radius:0 3px 3px 0}
 h2{font-weight:800;letter-spacing:-1px}h3{font-size:18px;font-weight:750}.top p{font-size:16px}
 .panel{border-color:var(--border);background:linear-gradient(135deg,#151e30,var(--panel) 65%)}
-.cards{gap:16px}.metric{border:1px solid #456eff;background:#1639ad;color:#edf2ff;font-size:14px;padding:23px;border-radius:12px;box-shadow:0 8px 24px #0003}
+.cards{gap:16px}.metric{border:1px solid #415578;background:#263958;color:#e5e5ee;font-size:14px;padding:23px;border-radius:12px;box-shadow:0 8px 24px #0003}
 .metric::before{width:32px;height:4px;background:var(--accent);margin-bottom:22px}
 .metric strong{font-size:44px;font-weight:800;color:#fff;letter-spacing:-2px}
-.metric:nth-child(2){background:var(--accent);border-color:var(--accent);color:#303600}
-.metric:nth-child(2) strong{color:#101500}.metric:nth-child(2)::before{background:#245bff}
-.metric:nth-child(3){background:#111e3b}.metric:nth-child(4){background:#172a63}
-.metric:hover{border-color:#f4ff00;transform:translateY(-3px);box-shadow:0 12px 28px #0005}
+.metric:nth-child(2){background:var(--accent);border-color:var(--accent);color:#381426}
+.metric:nth-child(2) strong{color:#210d19}.metric:nth-child(2)::before{background:#253e70}
+.metric:nth-child(3){background:#292b34}.metric:nth-child(4){background:#202e4a}
+.metric:hover{border-color:#ff5ca8;transform:translateY(-3px);box-shadow:0 12px 28px #0005}
 button.primary,button.secondary,button.danger{font-size:14px;min-height:42px;font-weight:700}
-button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 3px 0 #8f9800}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 3px 0 #9c315f}
 button.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
-button.secondary{background:#14234c;border-color:#3555a0;color:#eaf0ff}
-button.secondary:hover{background:#234bd0;border-color:#6289ff;color:white}
-button.secondary.selected{background:var(--blue);border-color:#7da1ff;color:white}
-input,textarea,select{font-size:16px;border-color:#344567;background:var(--surface-inset)}
-input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #f4ff0012}
+button.secondary{background:#252c40;border-color:#45516a;color:#e9e6ee}
+button.secondary:hover{background:#354563;border-color:#7b8397;color:white}
+button.secondary.selected{background:var(--blue);border-color:#8c93a6;color:white}
+input,textarea,select{font-size:16px;border-color:#444653;background:var(--surface-inset)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #ff5ca812}
 .form label,#cloudGate label{font-size:14px}.hint,legend,.data-table th{font-size:14px}
-.pill{background:#193574;color:#d5e5ff}.item{border-bottom-color:#2a3855}
-.day.current{border-color:var(--accent);background:#202914}.cal-task{background:#1a3064}.weekday{color:#b0c5ee}
-.gcal-event{border-left-color:#5689ff!important}.flash{border:2px solid #245bff;background:#0e1930}
-.kh-rich-toolbar,.gcal-panel{background:#132143;border-color:#344f86}.kh-rich-editor{background:var(--surface-inset)}
-dialog.kh-editor-dialog,dialog.kh-calendar-dialog{border-top:4px solid var(--accent);background:#111a2c}
-dialog::backdrop{background:#030817d9;backdrop-filter:blur(8px)}
-#cloudGate{border-top:4px solid var(--blue);background:linear-gradient(150deg,#172747,#101624 65%)}
-#cloudGate::before{background:var(--accent);color:#152000;border-radius:10px}
-#cloudGate p.muted{font-size:14px}body.locked{background:radial-gradient(ellipse at 50% 15%,#245bff35,transparent 65%),#080b14}
+.pill{background:#30364a;color:#d9d8e3}.item{border-bottom-color:#3a3d4b}
+.day.current{border-color:var(--accent);background:#362333}.cal-task{background:#2b354c}.weekday{color:#bab9c5}
+.gcal-event{border-left-color:#8b93a8!important}.flash{border:2px solid #253e70;background:#1a2030}
+.kh-rich-toolbar,.gcal-panel{background:#252c3e;border-color:#46516b}.kh-rich-editor{background:var(--surface-inset)}
+dialog.kh-editor-dialog,dialog.kh-calendar-dialog{border-top:4px solid var(--accent);background:#22232e}
+dialog::backdrop{background:#08090ed9;backdrop-filter:blur(8px)}
+#cloudGate{border-top:4px solid var(--blue);background:linear-gradient(150deg,#2c3041,#1c1d27 65%)}
+#cloudGate::before{background:var(--accent);color:#2b1020;border-radius:10px}
+#cloudGate p.muted{font-size:14px}body.locked{background:radial-gradient(ellipse at 50% 15%,#253e7035,transparent 65%),#101116}
 .kh-weather{border-top:3px solid var(--blue)}.kh-weather-head h3{color:var(--accent)}
-.kh-weather-low{color:#80b7ff}.kh-weather-high{color:var(--accent)}
-.kh-weather-chart svg polyline{stroke:#4f8bff}.kh-weather-chart svg circle{fill:#f4ff00}.kh-weather-chart svg path{fill:#245bff;opacity:.22}
-.chart-preview svg polyline{stroke:#4f8bff}.chart-preview svg circle{fill:#f4ff00}.chart-preview svg rect{fill:#3874ff}
+.kh-weather-low{color:#aab9d5}.kh-weather-high{color:var(--accent)}
+.kh-weather-chart svg polyline{stroke:#ff79b7}.kh-weather-chart svg circle{fill:#ff5ca8}.kh-weather-chart svg path{fill:#253e70;opacity:.22}
+.chart-preview svg polyline{stroke:#ff79b7}.chart-preview svg circle{fill:#ff5ca8}.chart-preview svg rect{fill:#d767a0}
 .data-table th{color:#b7ccff}.data-table tbody tr:hover{background:#1c2b483d}
-:where(button,a,input,textarea,select,[tabindex]):focus-visible{outline:3px solid #f4ff00;outline-offset:4px}
+:where(button,a,input,textarea,select,[tabindex]):focus-visible{outline:3px solid #ff5ca8;outline-offset:4px}
 @media(max-width:680px){header h1{font-size:21px}#nav button{font-size:14px}#nav button.active::before{display:none}.metric{padding:18px}.metric strong{font-size:36px}.metric::before{margin-bottom:16px}.cards{gap:10px}.kh-weather-head h3{font-size:22px}}
+
+/* Pink highlights with muted blue and graphite surfaces. */
+.metric:nth-child(2){background:#382338;border-color:#a54b7b;color:#e7ccdc}.metric:nth-child(2) strong{color:#ff83bc}.metric:nth-child(2)::before{background:#ff5ca8}.metric:first-child strong{color:#ff83bc}.metric:nth-child(3)::before{background:#a0a3b1}.metric:nth-child(4)::before{background:#758aaf}
+.kh-weather-high{color:#ff8cbd}.kh-weather-low{color:#a7b9dc}.kh-weather-chart svg path{fill:#788daf;opacity:.16}.kh-weather-chart svg circle{fill:#ff90c4}.chart-preview svg circle{fill:#ff90c4}
 </style><style>.kh-appointments-table{min-width:760px}.kh-appointments-table td{vertical-align:top}.kh-appointments-table td:first-child{min-width:190px}.kh-appointments-table td:nth-child(2){min-width:190px}.kh-appointments-table td:last-child{min-width:190px}</style></head><body class="locked"><header><div><h1>◈ Knowledge Hub</h1><small>Meine persönliche Wissensdatenbank · Sync-Schutz 1.0 · Design 1.1 · Icon 1.2</small></div><div class="row"><input id="globalSearch" aria-label="Globale Suche" placeholder="⌕ Alles durchsuchen…" oninput="globalQuery=this.value;globalSearchChanged()" onkeydown="if(event.key==='Escape'){globalQuery='';go('dashboard')}" style="width:245px"><span id="cloudStatus" role="status" aria-live="polite">Nicht angemeldet</span><button class="secondary" id="syncNowButton" type="button" style="display:none" onclick="syncNow()">↻ Synchronisieren</button><button class="secondary" id="logoutButton" type="button" style="display:none">Abmelden</button></div></header><section id="cloudGate"><h2>Willkommen zurück.</h2><p class="muted">Melde dich mit deinem bestehenden Supabase-Benutzerkonto an. Neue Registrierungen sind hier nicht möglich.</p><form id="loginForm"><label>E-Mail-Adresse<input type="email" name="email" autocomplete="username" required></label><label>Passwort<input type="password" name="password" autocomplete="current-password" required></label><button class="primary">Anmelden</button><p id="loginError" role="alert" class="muted"></p></form></section><div class="layout"><nav id="nav" aria-label="Hauptnavigation"></nav><main id="main"></main></div><dialog id="khEditorDialog" class="kh-editor-dialog" aria-label="Eintrag erstellen oder bearbeiten"></dialog><script>
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -10383,16 +10387,20 @@ function deleteChartRow(id,i){let t=db.chartTables.find(x=>x.id===id);if(t){t.ro
 function setChartType(id,v){let t=db.chartTables.find(x=>x.id===id);if(t){t.chartType=v;save();render()}}
 function deleteChartTable(id){if(!confirm('Tabelle löschen?'))return;db.chartTables=db.chartTables.filter(x=>x.id!==id);if(chartEdit===id)chartEdit=null;save();render()}
 function khChartMonth(value){
- const v=String(value).trim();
- const iso=v.match(/^(\d{4})-(\d{1,2})(?:-\d{1,2})?(?:T.*)?$/),de=v.match(/^\d{1,2}[./](\d{1,2})[./](\d{4})$/);
- const year=iso?iso[1]:de?de[2]:'',month=Number(iso?iso[2]:de?de[1]:0);
- return month>=1&&month<=12?{key:year+'-'+String(month).padStart(2,'0'),label:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'][month-1]}:{key:v,label:v.slice(0,12)};
+ const v=String(value??'').trim();
+ const names=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+ const iso=v.match(/^(\d{4})[-/](\d{1,2})(?:[-/]\d{1,2})?(?:[T\s].*)?$/);
+ const de=v.match(/^(?:\d{1,2}\s*[./-]\s*)(\d{1,2})(?:\s*[./-]\s*(\d{2}|\d{4}))?\.?(?:\s.*)?$/);
+ let month=iso?Number(iso[2]):de?Number(de[1]):0,year=iso?iso[1]:de?.[2]||'';
+ if(!month){const words=v.toLocaleLowerCase('de').match(/[a-zäöü]+/g)||[];month=names.findIndex(n=>words.some(w=>w===n.toLocaleLowerCase('de')||w===n.toLocaleLowerCase('de').slice(0,3)))+1;year=v.match(/\b\d{4}\b/)?.[0]||'';}
+ // Never fall back to a day/date string on this month-only axis.
+ return month>=1&&month<=12?{key:year+'-'+String(month).padStart(2,'0'),label:names[month-1]}:{key:'unknown',label:''};
 }
 function khChartAxisLabels(t,pts,px,height){
  const whatever=String(t.title||'').trim().toLocaleLowerCase('de')==='whatever';
  const groups=[];
  pts.forEach((p,i)=>{const m=whatever?khChartMonth(p.x):{key:String(i),label:String(p.x).slice(0,12)},last=groups[groups.length-1];if(whatever&&last?.key===m.key)last.end=i;else groups.push({...m,start:i,end:i})});
- return groups.map(g=>`<text x="${(px(g.start)+px(g.end))/2}" y="${height-33}" text-anchor="middle" fill="#dce8fb" font-size="12">${esc(g.label)}</text>`).join('');
+ return groups.filter(g=>g.label).map(g=>`<text x="${(px(g.start)+px(g.end))/2}" y="${height-33}" text-anchor="middle" fill="#dce8fb" font-size="12">${esc(g.label)}</text>`).join('');
 }
 function drawChart(t){let pts=t.rows.map((r,i)=>({x:r.x,y:Number(String(r.y).replace(',','.')),i})).filter(p=>String(p.x).trim()&&String(t.rows[p.i].y).trim()&&Number.isFinite(p.y));if(!pts.length)return '<div id="chartPreview" class="empty">Trage Werte in die Tabelle ein, um den Graphen zu sehen.</div>';let min=Math.min(0,...pts.map(p=>p.y)),max=Math.max(0,...pts.map(p=>p.y));if(t.yMin!==null&&t.yMin!==undefined&&Number.isFinite(Number(t.yMin)))min=Number(t.yMin);if(t.yMax!==null&&t.yMax!==undefined&&Number.isFinite(Number(t.yMax)))max=Number(t.yMax);if(max<=min)max=min+1;let W=760,H=330,L=65,R=25,T=20,B=65,innerW=W-L-R,innerH=H-T-B,py=y=>T+(max-y)/(max-min)*innerH,px=i=>L+(i+.5)*innerW/pts.length;let grid=Array.from({length:5},(_,i)=>{let v=min+(max-min)*i/4,y=py(v);return `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#35445e"/><text x="${L-10}" y="${y+4}" text-anchor="end" fill="#c5d5e9" font-size="12">${Number(v.toFixed(2))}</text>`}).join('');let marks=t.chartType==='bar'?pts.map((p,i)=>`<rect x="${px(i)-Math.min(28,innerW/pts.length*.35)}" y="${Math.min(py(p.y),py(0))}" width="${Math.min(56,innerW/pts.length*.7)}" height="${Math.max(1,Math.abs(py(0)-py(p.y)))}" fill="#00E5FF"/>`).join(''):`<polyline points="${pts.map((p,i)=>px(i)+','+py(p.y)).join(' ')}" fill="none" stroke="#00E5FF" stroke-width="3"/>`+pts.map((p,i)=>`<circle cx="${px(i)}" cy="${py(p.y)}" r="5" fill="#FF4FC3"/>`).join('');let labs=khChartAxisLabels(t,pts,px,H);return `<div id="chartPreview" class="chart-preview"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Graph: ${esc(t.title)}">${grid}<line x1="${L}" x2="${W-R}" y1="${py(0)}" y2="${py(0)}" stroke="#7e91ae"/>${marks}${labs}</svg></div>`}
 function diagrams(){return title('Diagramme','Messwerte in Tabellen erfassen, in Supabase speichern und als Graph darstellen.')+chartEditor()+`<div class="panel"><button class="primary" onclick="newChartTable()">+ Leere Tabelle anlegen</button></div>`+`<div class="panel"><h3>Gespeicherte Tabellen</h3>${db.chartTables.map(t=>`<div class="item"><strong>${esc(t.title)}</strong> · ${t.rows.length} Zeilen <button class="secondary" onclick="chartEdit='${t.id}';render()">Bearbeiten / Graph</button> <button class="danger" onclick="deleteChartTable('${t.id}')">Löschen</button></div>`).join('')||empty()}</div>`+`<div class="panel"><p class="muted">Die Vorschau nutzt Mermaid über ein externes CDN, sofern eine Internetverbindung besteht. Diagrammtexte bleiben lokal gespeichert.</p></div>`+toolbar('Diagramm')+(editId?formFor('diagrams',[['title','Titel','text',true],['category','Thema'],['source','Mermaid-Diagrammcode','textarea',true]]):'')+`<div class="panel">${filtered(db.diagrams).map(x=>`<div class="item"><h3>${esc(x.title)}</h3><span class="pill">${esc(x.category)}</span><pre>${esc(x.source)}</pre><button class="secondary" onclick="previewDiagram('${x.id}')">Diagramm anzeigen</button> ${actions('diagrams',x.id)}<div id="preview-${x.id}"></div></div>`).join('')||empty()}</div>`}function previewDiagram(id){const x=db.diagrams.find(z=>z.id===id);const el=document.getElementById('preview-'+id);el.innerHTML='<div class="hint">Diagramm wird geladen …</div>';if(!window.mermaid){let s=document.createElement('script');s.type='module';s.textContent=`import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'; window.mermaid=mermaid;window.dispatchEvent(new Event('mermaidReady'));`;document.body.appendChild(s);window.addEventListener('mermaidReady',()=>drawMermaid(el,x),{once:true});setTimeout(()=>{if(!window.mermaid)el.textContent='Vorschau benötigt Internetzugang.'},7000)}else drawMermaid(el,x)}async function drawMermaid(el,x){try{mermaid.initialize({startOnLoad:false,securityLevel:'strict'});const result=await mermaid.render('m'+Date.now(),x.source);el.innerHTML=result.svg}catch(e){el.textContent='Ungültiger Diagrammcode: '+e.message}}let activeMap='map1',selectedNode=null,linkFrom=null;
