@@ -194,6 +194,54 @@ body.locked #globalSearch {display:none;}
 
 </style><style>
 .kh-weather-head{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.kh-weather-head h3{font-size:24px;margin:0}.kh-weather-head button{margin-left:auto}.kh-weather-head button:disabled{opacity:.65;cursor:wait}.kh-weather-values{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:22px;margin:24px 0}.kh-weather-values strong{display:block;font-size:36px;line-height:1.2;margin-bottom:5px}.kh-weather-values span{color:var(--muted);font-size:16px}.kh-weather-low{color:#74b9ff}.kh-weather-high{color:#ff807b}.kh-weather-chart h4{font-size:18px;margin:24px 0 8px}.kh-weather-chart p{margin:8px 0 20px}.kh-weather-scroll{overflow-x:auto}.kh-weather-chart svg{display:block;width:100%;min-width:480px;height:auto;color:#dce6f1}.kh-weather-chart text{fill:currentColor;font-size:14px;font-family:inherit}.kh-weather-source,.kh-weather-stamp{font-size:14px;line-height:1.5}.kh-weather-source{margin-bottom:0}.kh-weather-error{color:#ffb4b4}@media(max-width:680px){.kh-weather-values{grid-template-columns:1fr 1fr;gap:20px 12px}.kh-weather-values>div:last-child{grid-column:1/-1}.kh-weather-values strong{font-size:30px}.kh-weather-head h3{font-size:22px}.kh-weather-head button{margin-left:0}}
+</style><style id="kh-yellow-blue-theme">
+/* Midnight / Electric Yellow / Cobalt — 22.11.2026 */
+:root{color-scheme:dark;--bg:#080b14;--header-bg:#0b0f1b;--nav-bg:#0b0f1b;--panel:#111827;--surface-inset:#090f1d;--surface-raised:#1a2540;--text:#f4f7ff;--muted:#aebbd4;--border:#2a3855;--accent:#f4ff00;--accent-hover:#fcff70;--accent-ink:#101400;--accent-soft:#252c0b;--link:#83b7ff;--blue:#245bff;--danger:#ffb6c2;--danger-bg:#351822;--danger-border:#763044;--warning:#f4ff00;--warning-bg:#292c10;--radius:12px;--radius-small:7px;--radius-large:18px;--shadow:0 10px 30px #0003;--dialog-shadow:0 28px 90px #0009}
+body{font-size:16px;background:radial-gradient(ellipse at 100% 0%,#12308040,transparent 48%),var(--bg)}
+body>header{border-bottom:2px solid var(--blue);background:var(--header-bg)}
+header h1{font-size:23px;font-weight:800;letter-spacing:-.8px;color:var(--accent)}
+header small{font-size:13px;color:var(--muted)}
+#cloudStatus{font-size:13px}#globalSearch{border-color:#344365}
+#nav{background:var(--nav-bg)}#nav::before{color:#85a7ff;font-size:11px;letter-spacing:1.6px}
+#nav button{font-size:14px;color:#b9c6df;border-radius:7px}
+#nav button:hover{background:#182957;color:white}
+#nav button.active{background:var(--blue);border-color:#4776ff;color:white;box-shadow:0 6px 22px #245bff35}
+#nav button.active::after{display:none}
+#nav button.active::before{content:"";position:absolute;left:-1px;top:10px;bottom:10px;width:4px;background:var(--accent);border-radius:0 3px 3px 0}
+h2{font-weight:800;letter-spacing:-1px}h3{font-size:18px;font-weight:750}.top p{font-size:16px}
+.panel{border-color:var(--border);background:linear-gradient(135deg,#151e30,var(--panel) 65%)}
+.cards{gap:16px}.metric{border:1px solid #456eff;background:#1639ad;color:#edf2ff;font-size:14px;padding:23px;border-radius:12px;box-shadow:0 8px 24px #0003}
+.metric::before{width:32px;height:4px;background:var(--accent);margin-bottom:22px}
+.metric strong{font-size:44px;font-weight:800;color:#fff;letter-spacing:-2px}
+.metric:nth-child(2){background:var(--accent);border-color:var(--accent);color:#303600}
+.metric:nth-child(2) strong{color:#101500}.metric:nth-child(2)::before{background:#245bff}
+.metric:nth-child(3){background:#111e3b}.metric:nth-child(4){background:#172a63}
+.metric:hover{border-color:#f4ff00;transform:translateY(-3px);box-shadow:0 12px 28px #0005}
+button.primary,button.secondary,button.danger{font-size:14px;min-height:42px;font-weight:700}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 3px 0 #8f9800}
+button.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+button.secondary{background:#14234c;border-color:#3555a0;color:#eaf0ff}
+button.secondary:hover{background:#234bd0;border-color:#6289ff;color:white}
+button.secondary.selected{background:var(--blue);border-color:#7da1ff;color:white}
+input,textarea,select{font-size:16px;border-color:#344567;background:var(--surface-inset)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #f4ff0012}
+.form label,#cloudGate label{font-size:14px}.hint,legend,.data-table th{font-size:14px}
+.pill{background:#193574;color:#d5e5ff}.item{border-bottom-color:#2a3855}
+.day.current{border-color:var(--accent);background:#202914}.cal-task{background:#1a3064}.weekday{color:#b0c5ee}
+.gcal-event{border-left-color:#5689ff!important}.flash{border:2px solid #245bff;background:#0e1930}
+.kh-rich-toolbar,.gcal-panel{background:#132143;border-color:#344f86}.kh-rich-editor{background:var(--surface-inset)}
+dialog.kh-editor-dialog,dialog.kh-calendar-dialog{border-top:4px solid var(--accent);background:#111a2c}
+dialog::backdrop{background:#030817d9;backdrop-filter:blur(8px)}
+#cloudGate{border-top:4px solid var(--blue);background:linear-gradient(150deg,#172747,#101624 65%)}
+#cloudGate::before{background:var(--accent);color:#152000;border-radius:10px}
+#cloudGate p.muted{font-size:14px}body.locked{background:radial-gradient(ellipse at 50% 15%,#245bff35,transparent 65%),#080b14}
+.kh-weather{border-top:3px solid var(--blue)}.kh-weather-head h3{color:var(--accent)}
+.kh-weather-low{color:#80b7ff}.kh-weather-high{color:var(--accent)}
+.kh-weather-chart svg polyline{stroke:#4f8bff}.kh-weather-chart svg circle{fill:#f4ff00}.kh-weather-chart svg path{fill:#245bff;opacity:.22}
+.chart-preview svg polyline{stroke:#4f8bff}.chart-preview svg circle{fill:#f4ff00}.chart-preview svg rect{fill:#3874ff}
+.data-table th{color:#b7ccff}.data-table tbody tr:hover{background:#1c2b483d}
+:where(button,a,input,textarea,select,[tabindex]):focus-visible{outline:3px solid #f4ff00;outline-offset:4px}
+@media(max-width:680px){header h1{font-size:21px}#nav button{font-size:14px}#nav button.active::before{display:none}.metric{padding:18px}.metric strong{font-size:36px}.metric::before{margin-bottom:16px}.cards{gap:10px}.kh-weather-head h3{font-size:22px}}
 </style></head><body class="locked"><header><div><h1>◈ Knowledge Hub</h1><small>Meine persönliche Wissensdatenbank · Sync-Schutz 1.0 · Design 1.1 · Icon 1.2</small></div><div class="row"><input id="globalSearch" aria-label="Globale Suche" placeholder="⌕ Alles durchsuchen…" oninput="globalQuery=this.value;globalSearchChanged()" onkeydown="if(event.key==='Escape'){globalQuery='';go('dashboard')}" style="width:245px"><span id="cloudStatus" role="status" aria-live="polite">Nicht angemeldet</span><button class="secondary" id="syncNowButton" type="button" style="display:none" onclick="syncNow()">↻ Synchronisieren</button><button class="secondary" id="logoutButton" type="button" style="display:none">Abmelden</button></div></header><section id="cloudGate"><h2>Willkommen zurück.</h2><p class="muted">Melde dich mit deinem bestehenden Supabase-Benutzerkonto an. Neue Registrierungen sind hier nicht möglich.</p><form id="loginForm"><label>E-Mail-Adresse<input type="email" name="email" autocomplete="username" required></label><label>Passwort<input type="password" name="password" autocomplete="current-password" required></label><button class="primary">Anmelden</button><p id="loginError" role="alert" class="muted"></p></form></section><div class="layout"><nav id="nav" aria-label="Hauptnavigation"></nav><main id="main"></main></div><dialog id="khEditorDialog" class="kh-editor-dialog" aria-label="Eintrag erstellen oder bearbeiten"></dialog><script>
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
