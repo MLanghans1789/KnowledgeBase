@@ -10809,9 +10809,38 @@ function khReconcilePending(snapshot,current){
 }
 function khUnlock(){cloudLoaded=true;document.body.classList.remove('locked');document.getElementById('logoutButton').style.display='inline-block';document.getElementById('syncNowButton').style.display='inline-block';}
 function khApplySnapshot(s){
- db=s.data;khSyncUser=s.user;khSyncRaw=s.raw;khSyncBase=khCoreRows(db);cloudDirty=false;khSyncBlocked=false;khSyncBlockMessage="";khSyncConflicts=[];
- localStorage.setItem(KEY,JSON.stringify(db));khRememberSync();localStorage.removeItem(KEY+'-pending-sync');khUnlock();render();
- statusText('✓ Cloud-Stand aktuell · Konfliktschutz aktiv');
+ const base=khCoreRows(s.data),state={version:1,user:s.user,base,raw:s.raw,blocked:false,blockMessage:'',conflicts:[]};
+ const keys=[KEY,khSyncStateKey,KEY+'-pending-sync'],previous=keys.map(key=>[key,localStorage.getItem(key)]);
+ // Commit storage before changing the visible data or the conflict baseline.
+ try{
+  keys.forEach(key=>localStorage.removeItem(key));
+  localStorage.setItem(KEY,JSON.stringify(s.data));
+  localStorage.setItem(khSyncStateKey,JSON.stringify(state));
+ }catch(error){
+  keys.forEach(key=>localStorage.removeItem(key));
+  for(const [key,value] of previous)if(value!==null)localStorage.setItem(key,value);
+  throw error;
+ }
+ db=s.data;khSyncUser=s.user;khSyncRaw=s.raw;khSyncBase=base;cloudDirty=false;khSyncBlocked=false;khSyncBlockMessage='';khSyncConflicts=[];
+ khUnlock();render();statusText('✓ Cloud-Stand aktuell · Konfliktschutz aktiv');
+}
+function khBackupBeforeCloud(){
+ const stored={};
+ for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i);if(key===KEY||key===khSyncStateKey||key===KEY+'-pending-sync'||key.startsWith(KEY+'-recovery-'))stored[key]=localStorage.getItem(key);}
+ const backup={version:2,exportedAt:new Date().toISOString(),data:structuredClone(db),stored};
+ return new Promise((resolve,reject)=>{
+  let request;
+  try{request=indexedDB.open('knowledge-hub-recovery',1)}catch(error){reject(error);return}
+  request.onupgradeneeded=()=>{request.result.createObjectStore('backups',{autoIncrement:true})};
+  request.onerror=()=>reject(request.error);
+  request.onblocked=()=>reject(new Error('Sicherungsspeicher blockiert. Bitte andere Dashboard-Tabs schließen.'));
+  request.onsuccess=()=>{
+   const database=request.result;let transaction;
+   try{transaction=database.transaction('backups','readwrite');transaction.objectStore('backups').add(backup)}catch(error){database.close();reject(error);return}
+   transaction.oncomplete=()=>{database.close();resolve(Object.keys(stored).filter(key=>key.startsWith(KEY+'-recovery-')))};
+   transaction.onabort=transaction.onerror=()=>{database.close();reject(transaction.error||new Error('Sicherung konnte nicht gespeichert werden.'))};
+  };
+ });
 }
 function khSyncNotice(message,restored=false){
  khSyncBlocked=true;khSyncBlockMessage=message;clearTimeout(cloudTimer);statusText('⚠ Abgleich angehalten · lokale Änderungen erhalten');
@@ -10829,11 +10858,13 @@ async function khUseCloudVersion(){
  if(!confirm('Lokale Fassung bereits als JSON heruntergeladen? Der Cloud-Stand ersetzt jetzt die lokale Ansicht. Eine zusätzliche lokale Sicherung wird auf diesem Gerät aufbewahrt.'))return;
  khSyncLoading=true;clearTimeout(cloudTimer);
  try{
-  localStorage.setItem(KEY+'-recovery-'+Date.now(),JSON.stringify({version:2,exportedAt:new Date().toISOString(),data:db}));
   const version=cloudVersion,s=await khFetchSnapshot();
+  const migrated=await khBackupBeforeCloud();
   if(version!==cloudVersion)throw Error('Während des Ladens wurde weiterbearbeitet. Bitte erneut versuchen.');
+  // Only remove old copies after the separate backup transaction has committed.
+  migrated.forEach(key=>localStorage.removeItem(key));
   khApplySnapshot(s);document.getElementById('khSyncNotice')?.remove();
- }catch(e){statusText('⚠ Cloud-Stand nicht übernommen');alert(e.message);}finally{khSyncLoading=false;}
+ }catch(e){statusText('⚠ Cloud-Stand nicht übernommen');alert(e.name==='QuotaExceededError'||/quota/i.test(e.message)?'Der Browserspeicher ist voll. Der Cloud-Stand wurde nicht übernommen. Bitte die lokale Fassung als JSON herunterladen und keine Browserdaten löschen.':e.message);}finally{khSyncLoading=false;}
 }
 async function cloudLoad(){
  if(khSyncLoading)return;khSyncLoading=true;
